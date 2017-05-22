@@ -1,0 +1,1948 @@
+# ==================||====================================||====================================||==================
+#             BedWars-ID v0.3                       BedWars-ID v0.3                       BedWars-ID v0.3
+#       A Bestgames for your Server!          A Bestgames for your Server!          A Bestgames for your Server!
+#     This skript was originally created    This skript was originally created    This skript was originally created
+#                by FayBoy                             by FayBoy                             by FayBoy
+#       IP: mc.minecraft-indonesia.net        IP: mc.minecraft-indonesia.net        IP: mc.minecraft-indonesia.net
+# ==================||====================================||====================================||==================
+#             BedWars-ID v0.3                       BedWars-ID v0.3                       BedWars-ID v0.3
+#       A Bestgames for your Server!          A Bestgames for your Server!          A Bestgames for your Server!
+#     This skript was originally created    This skript was originally created    This skript was originally created
+#                by FayBoy                             by FayBoy                             by FayBoy
+#       IP: mc.minecraft-indonesia.net        IP: mc.minecraft-indonesia.net        IP: mc.minecraft-indonesia.net
+# ==================||====================================||====================================||==================
+#             BedWars-ID v0.3                       BedWars-ID v0.3                       BedWars-ID v0.3
+#       A Bestgames for your Server!           A Bestgames for your Server!         A Bestgames for your Server!
+#     This skript was originally created    This skript was originally created    This skript was originally created
+#                by FayBoy                             by FayBoy                             by FayBoy
+#       IP: mc.minecraft-indonesia.net        IP: mc.minecraft-indonesia.net        IP: mc.minecraft-indonesia.net
+# ==================||====================================||====================================||==================
+#             BedWars-ID v0.3                       BedWars-ID v0.3                       BedWars-ID v0.3
+#       A Bestgames for your Server!          A Bestgames for your Server!          A Bestgames for your Server!
+#     This skript was originally created    This skript was originally created    This skript was originally created
+#                by FayBoy                             by FayBoy                             by FayBoy
+#       IP: mc.minecraft-indonesia.net        IP: mc.minecraft-indonesia.net        IP: mc.minecraft-indonesia.net
+# ==================||====================================||====================================||==================
+
+every 1 tick:
+	set {randominteger} to "%random integer from 1 to 6%"
+
+every 1 tick:
+	if {randominteger} is "1":
+		set {randomcolor} to "&c"
+		set {randomcolor2} to "&4"
+	if {randominteger} is "2":
+		set {randomcolor} to "&b"
+		set {randomcolor2} to "&3"
+	if {randominteger} is "3":
+		set {randomcolor} to "&a"
+		set {randomcolor2} to "&2"
+	if {randominteger} is "4":
+		set {randomcolor} to "&e"
+		set {randomcolor2} to "&6"
+	if {randominteger} is "5":
+		set {randomcolor} to "&f"
+		set {randomcolor2} to "&8"
+	if {randominteger} is "6":
+		set {randomcolor} to "&d"
+		set {randomcolor2} to "&5"
+
+options:
+	version: 0.3
+	prefix: &a[Game]
+	c1: %{randomcolor}%
+	c2: %{randomcolor2}%
+
+function ScoreBoardDeleteBoard(p: player):
+	loop 15 times:
+		delete the id based score "%{_p}%Slot%loop-number%" in stylish scoreboard "GameScore-%{_p}%"
+	delete stylish scoreboard "GameScore-%{_p}%"
+
+function kitsknight(p: player):
+	give unbreakable wooden sword to {_p}
+
+function kitsminer(p: player):
+	give unbreakable wooden pickaxe to {_p}
+
+function kitsbuilder(p: player):
+	give unbreakable wooden pickaxe to {_p}
+	give 24 sandstone to {_p}
+
+function kitsarmorer(p: player):
+	give unbreakable wooden sword to {_p}
+	equip {_p} with unbreakable chain leggings
+	equip {_p} with unbreakable chain boots
+
+function kitsarcher(p: player):
+	give unbreakable wooden sword to {_p}
+	give unbreakable bow to {_p}
+	give 16 arrow to {_p}
+
+function kitsswordsman(p: player):
+	give unbreakable stone sword to {_p}
+	give unbreakable shears to {_p}
+
+function kitsdestroyer(p: player):
+	give unbreakable iron pickaxe to {_p}
+	give unbreakable shears to {_p}
+
+function kitsdefender(p: player):
+	give unbreakable stone pickaxe to {_p}
+	give unbreakable shears to {_p}
+	give 24 sandstone to {_p}
+	give 8 end stone to {_p}
+	give 4 planks to {_p}
+
+function kitstank(p: player):
+	give unbreakable stone pickaxe to {_p}
+	equip {_p} with unbreakable iron leggings
+	equip {_p} with unbreakable iron boots
+
+function kitsbowsman(p: player):
+	give unbreakable wooden sword to {_p}
+	give unbreakable bow of power 1 to {_p}
+	give 24 arrow to {_p}
+	equip {_p} with unbreakable chain leggings
+	equip {_p} with unbreakable chain boots
+
+function kitspotioner(p: player):
+	give unbreakable stone sword to {_p}
+	give potion:8194 named "&f&oSpeed II Potion (45 seconds)" to {_p}
+	give potion:8205 named "&f&oJump V Potion (45 seconds)" to {_p}
+
+function kitsguardian(p: player):
+	give unbreakable stone sword to {_p}
+	give spawn egg:99 named "&fSpawn Iron Golem" with lore "&7Moderately motivated.||&7Sometimes||&7they help defend your base." to {_p}
+	give 2 snowball of unbreaking 1 named "&aIcefish" with lore "&7Moderately annoying.These||&7little critters||&7can bw thrown to distract||&7enemies." to {_p}
+	give 3 golden apple to {_p}
+
+on quit:
+	ScoreBoardDeleteBoard(player)
+
+on join:
+	while player is online:
+		loop 1 times:
+			wait 1 tick
+		if stylish scoreboard "GameScore-%player%" exists:
+			ScoreBoardDeleteBoard(player)
+		if stylish scoreboard "GameScore-%player%" is not set:
+			if {bedwars.%player%.state} is "lobby":
+				add "&a", "&b", "&c", "&d", "&e", "&1", "&2", "&3", "&4", "&5", "&f", "&7", "&8", "&9" and "&f" to {_d::*}
+				create new stylish scoreboard named "GameScore-%player%"
+				set title of stylish scoreboard "GameScore-%player%" to "&e&lBEDWARS"
+				set stylish scoreboard of player to "GameScore-%player%"
+				create a new id based score "%player%Slot10" with text "%{_d::10}%&1" slot 10 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot9" with text "%{_d::9}%&fKills: &a%{bedwars.%player%.stats.kills}%" slot 9 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot8" with text "%{_d::8}%&fDeaths: &a%{bedwars.%player%.stats.deaths}%" slot 8 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot7" with text "%{_d::7}%&fWins: &a%{bedwars.%player%.stats.wins}%" slot 7 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot6" with text "%{_d::6}%&fFinal Kills: &a%{bedwars.%player%.stats.finalkills}%" slot 6 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot5" with text "%{_d::5}%&2" slot 5 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot4" with text "%{_d::4}%&fCoins: &a%{bedwars.%player%.stats.coins}%" slot 4 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot3" with text "%{_d::3}%&fKits: &a%{bedwars.%player%.stats.kits}%" slot 3 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot2" with text "%{_d::2}%&3" slot 2 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot1" with text "%{_d::1}%&eplay.national-network.ga" slot 1 for stylish scoreboard "GameScore-%player%"
+			if {bedwars.%player%.state} is "wait":
+				add "&a", "&b", "&c", "&d", "&e", "&1", "&2", "&3", "&4", "&5", "&f", "&7", "&8", "&9" and "&f" to {_d::*}
+				create new stylish scoreboard named "GameScore-%player%"
+				set title of stylish scoreboard "GameScore-%player%" to "&e&lBEDWARS"
+				set stylish scoreboard of player to "GameScore-%player%"
+				create a new id based score "%player%Slot10" with text "%{_d::10}%&1" slot 10 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot9" with text "%{_d::9}%&fMap: &a%{bedwars.arena.%{bedwars.%player%.arena}%}%" slot 9 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot8" with text "%{_d::8}%&fPlayers: &a%{bedwars.arena.%{bedwars.%player%.arena}%.playing}%/%{bedwars.arena.%{bedwars.%player%.arena}%.maxplayers}%" slot 8 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot7" with text "%{_d::7}%&2" slot 7 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot6" with text "%{_d::6}%&fStarting in &anull" slot 6 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot5" with text "%{_d::5}%&3" slot 5 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot4" with text "%{_d::4}%&fCoins: &a%{bedwars.%player%.stats.coins}%" slot 4 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot3" with text "%{_d::3}%&fKits: &a%{bedwars.%player%.stats.kits}%" slot 3 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot2" with text "%{_d::2}%&4" slot 2 for stylish scoreboard "GameScore-%player%"
+				create a new id based score "%player%Slot1" with text "%{_d::1}%&eplay.national-network.ga" slot 1 for stylish scoreboard "GameScore-%player%"
+			if {bedwars.%player%.state} is "in game":
+				if {bedwars.arena.%{bedwars.%player%.arena}%.teamsize} is "Solo" or "Doubles":
+					add "&a", "&b", "&c", "&d", "&e", "&1", "&2", "&3", "&4", "&5", "&f", "&7", "&8", "&9" and "&f" to {_d::*}
+					create new stylish scoreboard named "GameScore-%player%"
+					set title of stylish scoreboard "GameScore-%player%" to "&e&lBEDWARS"
+					set stylish scoreboard of player to "GameScore-%player%"
+					create a new id based score "%player%Slot15" with text "%{_d::15}%&7%month%/%day%/%year%" slot 15 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot14" with text "%{_d::14}%&1" slot 14 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "diamond upgrade":
+						create a new id based score "%player%Slot13" with text "%{_d::13}%&fDiamond Upgrade: " slot 13 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 12 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "emerald upgrade":
+						create a new id based score "%player%Slot13" with text "%{_d::13}%&fEmerald Upgrade: " slot 13 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 12 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "diamond maxed":
+						create a new id based score "%player%Slot13" with text "%{_d::13}%&fDiamond Maxed: " slot 13 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 12 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "emerald maxed":
+						create a new id based score "%player%Slot13" with text "%{_d::13}%&fEmerald Maxed: " slot 13 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 12 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "bed destruction":
+						create a new id based score "%player%Slot13" with text "%{_d::13}%&fBed Destruction: " slot 13 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 12 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "game end":
+						create a new id based score "%player%Slot13" with text "%{_d::13}%&fGame End: " slot 13 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 12 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot11" with text "%{_d::11}%&2" slot 11 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot10" with text "%{_d::10}%&4&lR&r Red: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.red}%" slot 10 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot9" with text "%{_d::9}%&9&lB&r Blue: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.blue}%" slot 9 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot8" with text "%{_d::8}%&a&lG&r Green: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.green}%" slot 8 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot7" with text "%{_d::7}%&e&lY&r Yellow: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.yellow}%" slot 7 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot6" with text "%{_d::6}%&b&lA&r Aqua: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.aqua}%" slot 6 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot5" with text "%{_d::5}%&f&lW&r White: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.white}%" slot 5 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot4" with text "%{_d::4}%&d&lP&r Pink: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.pink}%" slot 4 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot3" with text "%{_d::3}%&8&lG&r Gray: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.gray}%" slot 3 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot2" with text "%{_d::2}%&3" slot 2 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot1" with text "%{_d::1}%&eplay.national-network.ga" slot 1 for stylish scoreboard "GameScore-%player%"
+				if {bedwars.arena.%{bedwars.%player%.arena}%.teamsize} is "Triples" or "Multiples":
+					add "&a", "&b", "&c", "&d", "&e", "&1", "&2", "&3", "&4", "&5", "&f", "&7", "&8", "&9" and "&f" to {_d::*}
+					create new stylish scoreboard named "GameScore-%player%"
+					set title of stylish scoreboard "GameScore-%player%" to "&e&lBEDWARS"
+					set stylish scoreboard of player to "GameScore-%player%"
+					create a new id based score "%player%Slot14" with text "%{_d::14}%&7%month%/%day%/%year%" slot 14 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot13" with text "%{_d::13}%&1" slot 13 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "diamond upgrade":
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&fDiamond Upgrade: " slot 12 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot11" with text "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 11 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "emerald upgrade":
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&fEmerald Upgrade: " slot 12 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot11" with text "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 11 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "diamond maxed":
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&fDiamond Maxed: " slot 12 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot11" with text "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 11 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "emerald maxed":
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&fEmerald Maxed: " slot 12 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot11" with text "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 11 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "bed destruction":
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&fBed Destruction: " slot 12 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot11" with text "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 11 for stylish scoreboard "GameScore-%player%"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "game end":
+						create a new id based score "%player%Slot12" with text "%{_d::12}%&fGame End: " slot 12 for stylish scoreboard "GameScore-%player%"
+						create a new id based score "%player%Slot11" with text "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%" slot 11 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot10" with text "%{_d::10}%&2" slot 10 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot9" with text "%{_d::9}%&4&lR&r Red: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.red}%" slot 9 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot8" with text "%{_d::8}%&9&lB&r Blue: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.blue}%" slot 8 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot7" with text "%{_d::7}%&a&lG&r Green: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.green}%" slot 7 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot6" with text "%{_d::6}%&e&lY&r Yellow: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.yellow}%" slot 6 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot5" with text "%{_d::5}%&3" slot 5 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot4" with text "%{_d::4}%&fKills: &a%{bedwars.%player%.arena.kills}%" slot 4 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot3" with text "%{_d::3}%&fFinal Kills: &a%{bedwars.%player%.arena.finalkills}%" slot 3 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot2" with text "%{_d::2}%&4" slot 2 for stylish scoreboard "GameScore-%player%"
+					create a new id based score "%player%Slot1" with text "%{_d::1}%&eplay.national-network.ga" slot 1 for stylish scoreboard "GameScore-%player%"
+			while player is online:
+				loop 1 times:
+					wait 1 tick
+				if {bedwars.%player%.state} is "lobby":
+					set the text of id "%player%Slot10" to "%{_d::10}%&1"
+					set the text of id "%player%Slot9" to "%{_d::9}%&fKills: &a%{bedwars.%player%.stats.kills}%"
+					set the text of id "%player%Slot8" to "%{_d::8}%&fDeaths: &a%{bedwars.%player%.stats.deaths}%"
+					set the text of id "%player%Slot7" to "%{_d::7}%&fWins: &a%{bedwars.%player%.stats.wins}%"
+					set the text of id "%player%Slot6" to "%{_d::6}%&fFinal Kills: &a%{bedwars.%player%.stats.finalkills}%"
+					set the text of id "%player%Slot5" to "%{_d::5}%&2"
+					set the text of id "%player%Slot4" to "%{_d::4}%&fCoins: &a%{bedwars.%player%.stats.coins}%"
+					set the text of id "%player%Slot3" to "%{_d::3}%&fKits: &a%{bedwars.%player%.stats.kits}%"
+					set the text of id "%player%Slot2" to "%{_d::2}%&3"
+					set the text of id "%player%Slot1" to "%{_d::1}%&eplay.national-network.ga"
+				if {bedwars.%player%.state} is "wait":
+					set the text of id "%player%Slot10" to "%{_d::10}%&1"
+					set the text of id "%player%Slot9" to "%{_d::9}%&fMap: &a%{bedwars.arena.%{bedwars.%player%.arena}%}%"
+					set the text of id "%player%Slot8" to "%{_d::8}%&fPlayers: &a%{bedwars.arena.%{bedwars.%player%.arena}%.playing}%/%{bedwars.arena.%{bedwars.%player%.arena}%.maxplayers}%"
+					set the text of id "%player%Slot7" to "%{_d::7}%&2"
+					set the text of id "%player%Slot6" to "%{_d::6}%&fStarting in &anull"
+					set the text of id "%player%Slot5" to "%{_d::5}%&3"
+					set the text of id "%player%Slot4" to "%{_d::4}%&fCoins: &a%{bedwars.%player%.stats.coins}%"
+					set the text of id "%player%Slot3" to "%{_d::3}%&fKits: &a%{bedwars.%player%.stats.kits}%"
+					set the text of id "%player%Slot2" to "%{_d::2}%&3"
+					set the text of id "%player%Slot1" to "%{_d::1}%&eplay.national-network.ga"
+				if {bedwars.%player%.state} is "in game":
+					if {bedwars.arena.%{bedwars.%player%.arena}%.teamsize} is "Solo" or "Doubles":
+						set the text of id "%player%Slot15" to "%{_d::15}%&7%month%/%day%/%year%"
+						set the text of id "%player%Slot14" to "%{_d::14}%&1"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "diamond upgrade":
+							set the text of id "%player%Slot13" to "%{_d::13}%&fDiamond Upgrade: "
+							set the text of id "%player%Slot12" to "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "emerald upgrade":
+							set the text of id "%player%Slot13" to "%{_d::13}%&fEmerald Upgrade: "
+							set the text of id "%player%Slot12" to "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "diamond maxed":
+							set the text of id "%player%Slot13" to "%{_d::13}%&fDiamond Maxed: "
+							set the text of id "%player%Slot12" to "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "emerald maxed":
+							set the text of id "%player%Slot13" to "%{_d::13}%&fEmerald Maxed: "
+							set the text of id "%player%Slot12" to "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "bed destruction":
+							set the text of id "%player%Slot13" to "%{_d::13}%&fBed Destruction: "
+							set the text of id "%player%Slot12" to "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "Game End":
+							set the text of id "%player%Slot13" to "%{_d::13}%&fGame End: "
+							set the text of id "%player%Slot12" to "%{_d::12}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						set the text of id "%player%Slot11" to "%{_d::11}%&2"
+						set the text of id "%player%Slot10" to "%{_d::10}%&4&lR&r Red: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.red}%"
+						set the text of id "%player%Slot9" to "%{_d::9}%&9&lB&r Blue: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.blue}%"
+						set the text of id "%player%Slot8" to "%{_d::8}%&a&lG&r Green: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.green}%"
+						set the text of id "%player%Slot7" to "%{_d::7}%&e&lY&r Yellow: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.yellow}%"
+						set the text of id "%player%Slot6" to "%{_d::6}%&b&lA&r Aqua: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.aqua}%"
+						set the text of id "%player%Slot5" to "%{_d::5}%&f&lW&r White: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.white}%"
+						set the text of id "%player%Slot4" to "%{_d::4}%&d&lP&r Pink: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.pink}%"
+						set the text of id "%player%Slot3" to "%{_d::3}%&8&lG&r Gray: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.gray}%"
+						set the text of id "%player%Slot2" to "%{_d::2}%&3"
+						set the text of id "%player%Slot1" to "%{_d::1}%&eplay.national-network.ga"
+					if {bedwars.arena.%{bedwars.%player%.arena}%.teamsize} is "Triples" or "Multiples":
+						set the text of id "%player%Slot14" to "%{_d::14}%&7%month%/%day%/%year%"
+						set the text of id "%player%Slot13" to "%{_d::13}%&1"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "diamond upgrade":
+							set the text of id "%player%Slot12" to "%{_d::12}%&fDiamond Upgrade: "
+							set the text of id "%player%Slot11" to "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "emerald upgrade":
+							set the text of id "%player%Slot12" to "%{_d::12}%&fEmerald Upgrade: "
+							set the text of id "%player%Slot11" to "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "diamond maxed":
+							set the text of id "%player%Slot12" to "%{_d::12}%&fDiamond Maxed: "
+							set the text of id "%player%Slot11" to "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "emerald maxed":
+							set the text of id "%player%Slot12" to "%{_d::12}%&fEmerald Maxed: "
+							set the text of id "%player%Slot11" to "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "bed destruction":
+							set the text of id "%player%Slot12" to "%{_d::12}%&fBed Destruction: "
+							set the text of id "%player%Slot11" to "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						if {bedwars.arena.%{bedwars.%player%.arena}%.time} is "game end":
+							set the text of id "%player%Slot12" to "%{_d::12}%&fGame End: "
+							set the text of id "%player%Slot11" to "%{_d::11}%&a%{bedwars.arena.%{bedwars.%player%.arena}%.timevalue}%"
+						set the text of id "%player%Slot10" to "%{_d::10}%&2"
+						set the text of id "%player%Slot9" to "%{_d::9}%&4&lR&r Red: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.red}%"
+						set the text of id "%player%Slot8" to "%{_d::8}%&9&lB&r Blue: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.blue}%"
+						set the text of id "%player%Slot7" to "%{_d::7}%&a&lG&r Green: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.green}%"
+						set the text of id "%player%Slot6" to "%{_d::6}%&e&lY&r Yellow: %{bedwars.game.%{bedwars.%player%.arena}%.state.score.yellow}%"
+						set the text of id "%player%Slot5" to "%{_d::5}%&3"
+						set the text of id "%player%Slot4" to "%{_d::4}%&fKills: &a%{bedwars.%player%.arena.kills}%"
+						set the text of id "%player%Slot3" to "%{_d::3}%&fFinal Kills: &a%{bedwars.%player%.arena.finalkills}%"
+						set the text of id "%player%Slot2" to "%{_d::2}%&4"
+						set the text of id "%player%Slot1" to "%{_d::1}%&eplay.national-network.ga"
+
+command /testcoins [<number>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		add arg 1 to {bedwars.%player%.stats.coins}
+		stop
+
+command /testnpc:
+	trigger:
+		create a citizen named "&e&lITEM SHOP" at player's location as a villager
+		set {_id} to last created citizen
+		set citizen {_id} nametag invisible
+		make citizen {_id} invulnerable
+		give npc {_id} the look close trait
+		set {testid} to {_id}
+
+on npc right click:
+	citizen is {testid}
+	message "{@prefix} &eMembuka Item Shop..."
+
+command /playsound [<text>] [<number>]:
+	trigger:
+		if arg 1 is not set:
+			stop
+		if arg 2 is not set:
+			stop
+		play raw sound "%arg 1%" at player with pitch arg 2 volume 1
+		message "%arg 1% %arg 2% Pitch"
+		stop
+
+on join:
+	if {bedwars.%player%.stats.kills} is not set:
+		set {bedwars.%player%.stats.kills} to 0
+	if {bedwars.%player%.stats.deaths} is not set:
+		set {bedwars.%player%.stats.deaths} to 0
+	if {bedwars.%player%.stats.wins} is not set:
+		set {bedwars.%player%.stats.wins} to 0
+	if {bedwars.%player%.stats.finalkills} is not set:
+		set {bedwars.%player%.stats.finalkills} to 0
+	if {bedwars.%player%.stats.coins} is not set:
+		set {bedwars.%player%.stats.coins} to 0
+	if {bedwars.%player%.stats.kits} is not set:
+		set {bedwars.%player%.stats.kits} to "Knight"
+	if {bedwars.%player%.state} is not set:
+		set {bedwars.%player%.state} to "lobby"
+	if {bedwars.%player%.state} is "in game":
+		make player execute command "bw rejoin"
+		stop
+	if {bedwars.mainlobby} is set:
+		teleport player to {bedwars.mainlobby}
+	heal the player
+	clear player's inventory
+	set player's health to 20
+	set player's hunger to 20
+	set level of player to 0
+	set player's gamemode to survival
+	set player's fly mode to false
+	set slot 0 of player to a paper named "&e&lArena Selection &7(Right Click)" with lore "&7Right-click to join the arena!"
+	set slot 1 of player to a book named "&b&lProfile &7(Right Click)" with lore "&7Right-click to select the kits!"
+	set slot 2 of player to a emerald named "&a&lShop &7(Right Click)" with lore "&7Right-click to buy some stuff!"
+	set slot 8 of player to a bed_item named "&c&lLeave to the Hub &7(Right Click)" with lore "&7Right-click to select the kits!"
+
+on right click:
+	if player's tool is paper named "&e&lArena Selection &7(Right Click)" with lore "&7Right-click to join the arena!":
+		cancel event
+		if size of {bedwars.arena::*} is 0:
+			message "&cThere is no one Arenas!"
+			stop
+		set {bedwars.gui.arena.menu} to 10
+		open chest with 6 row named "BedWars Games" to player
+		format slot 0 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 1 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 2 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 3 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 4 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 5 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 6 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 7 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 8 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 9 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 17 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 18 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 26 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 27 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 35 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 36 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 44 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 45 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 46 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 47 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 48 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 49 of player with clock named "&eRandom Join||||&aClick to Play" to be unstealable
+		format slot 50 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 51 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 52 of player with gray stained glass pane named "&f" to be unstealable
+		format slot 53 of player with gray stained glass pane named "&f" to be unstealable
+		loop {bedwars.arena::*}:
+			if {bedwars.gui.arena.menu} is 17:
+				set {bedwars.gui.arena.menu} to 19
+			if {bedwars.gui.arena.menu} is 26:
+				set {bedwars.gui.arena.menu} to 28
+			if {bedwars.gui.arena.menu} is 35:
+				set {bedwars.gui.arena.menu} to 37
+			if {bedwars.gui.arena.menu} >= 44:
+				stop
+			format slot {bedwars.gui.arena.menu} of player with paper named "&a%loop-value%||||&7Mode: &a%{bedwars.arena.%loop-value%.teamsize}%||&7Players: &anull||&7Max Players: &a%{bedwars.arena.%loop-value%.maxplayers}%||||&aClick to Play" to close then run [make player execute command "bw join %loop-value%"]
+			add 1 to {bedwars.gui.arena.menu}
+		set {bedwars.gui.arena.menu} to 10
+		stop
+
+command /testslot:
+	trigger:
+		message "%slot 8 of player%"
+		stop
+
+command /bedwars [<text>] [<text>] [<text>]:
+	description: A BedWars Games Command!
+	usage: /bedwars
+	aliases: bw
+	trigger:
+		if arg 1 is not set:
+			message "{@c1}&m----------------{@c2}&m[-&r &e&lBEDWARS &7[{@version}] {@c2}&m-]{@c1}&m----------------"
+			message "&aBedWars Commands:"
+			message "&e/bedwars | bw {@c1}➝ &bShows a list of commands"
+			message "&e/bw join {@c1}➝ &bPuts you in the arena!"
+			message "&e/bw autojoin {@c1}➝ &bPuts you in the best available arena!"
+			message "&e/bw list {@c1}➝ &bShows a list of arenas!"
+			message "&e/bw about {@c1}➝ &bAbout the games!"
+			if player does not have permission "bedwars.admin":
+				message "&e/bw &cAdmin {@c1}➝ &bShows a list of admin commands"
+			message "{@c1}&m------------------------------------------------"
+			stop
+		if arg 1 is "about":
+			message "{@c1}&m----------------{@c2}&m[-&r &e&lBEDWARS &7[{@version}] {@c2}&m-]{@c1}&m----------------"
+			message "{@c1} - &eA BedWars Games for Minecraft!"
+			message "{@c1} - &eCreated by &3Fay&fBoy&e!"
+			message "{@c1} - &eBedWars Version is {@version}"
+			message "{@c1} - &eIf you find bug, you can report to Admins!"
+			message "{@c1}&m------------------------------------------------"
+			stop
+		if arg 1 is "list":
+			message "{@c1}&m----------------{@c2}&m[-&r &e&lBEDWARS &7[{@version}] {@c2}&m-]{@c1}&m----------------"
+			if size of {bedwars.arena::*} is 0:
+				message "{@c1}&m------------------------------------------------"
+				message "&cThere is no one Arenas in this Server!"
+				message "{@c1}&m------------------------------------------------"
+			else:
+				message "&e List of Arenas:"
+				loop {bedwars.arena::*}:
+					message "{@c1} ➝ %loop-value%"
+			message "{@c1}&m------------------------------------------------"
+			stop
+		if arg 1 is "join":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw join <arena>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cThat arena is not exists!"
+				stop
+			if {bedwars.arena.%arg 2%.state} is "in game":
+				message "{@prefix} &cThat arena is still in game!"
+				stop
+			if {bedwars.arena.%arg 2%.state} is "full":
+				message "{@prefix} &cThat arena is full!"
+				stop
+			if {bedwars.arena.%arg 2%.state} is "wait":
+				if {bedwars.arena.%arg 2%.playing} is not set:
+					set {bedwars.arena.%arg 2%.playing} to 0
+				set {bedwars.%player%.arena} to arg 2
+				set {bedwars.%player%.state} to "wait"
+				heal the player
+				clear player's inventory
+				set player's health to 20
+				set player's hunger to 20
+				set level of player to 0
+				set player's gamemode to survival
+				set player's fly mode to false
+				add 1 to {bedwars.arena.%arg 2%.playing}
+				add player to {bedwars.arena.%arg 2%.player::*}
+				send "&7%player% &ehas joined (&b%{bedwars.arena.%arg 2%.minplayers}%&7/&b%{bedwars.arena.%arg 2%.maxplayers}%&e)!" to {bedwars.arena.%arg 2%.player::*}
+				set slot 0 of player to a clock named "&e&lTeam Selection &7(Right Click)" with lore "&7Right-click to select the team!"
+				set slot 1 of player to a book named "&b&lKits Selection &7(Right Click)" with lore "&7Right-click to select the kits!"
+				set slot 8 of player to a bed_item named "&c&lReturn to Lobby &7(Right Click)" with lore "&7Right-click to leave to the lobby!"
+				if {bedwars.arena.%arg 2%.playing} >= {bedwars.arena.%arg 2%.maxplayers}:
+					set {bedwars.arena.%arg 2%.state} to "full"
+					set {bedwars.arena.%arg 2%.waiting} to 10
+				if {bedwars.arena.%arg 2%.playing} >= {bedwars.arena.%arg 2%.minplayers}:
+					if {bedwars.arena.%arg 2%.waiting} is not set:
+						set {bedwars.arena.%arg 2%.waiting} to 15
+					loop {bedwars.arena.%arg 2%.waiting} times:
+						if {bedwars.arena.%arg 2%.state} is "in game":
+							stop
+						wait 1 seconds
+						remove 1 from {bedwars.arena.%arg 2%.waiting}
+						if {bedwars.arena.%arg 2%.waiting} < 0:
+							set {bedwars.arena.%arg 2%.waiting} to 15
+						if {bedwars.arena.%arg 2%.playing} < {bedwars.arena.%arg 2%.minplayers}:
+							set {bedwars.arena.%arg 2%.waiting} to 15
+							show title "&cWaiting for more players..." to {bedwars.arena.%arg 2%.player::*} for 1 seconds and 1 ticks fade in and 24 ticks fadeout
+							send "&cWe don't have enough players! Start cancelled." to {bedwars.arena.%arg 2%.player::*}
+							play raw sound "random.click" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+							stop
+						if {bedwars.arena.%arg 2%.waiting} is 15:
+							send "&eThe game starts in &a15 &eseconds!" to {bedwars.arena.%arg 2%.player::*}
+							show title "&a15" to {bedwars.arena.%arg 2%.player::*} for 1 seconds and 1 ticks fade in and 24 ticks fadeout
+							play raw sound "note.hat" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+						if {bedwars.arena.%arg 2%.waiting} is 10:
+							send "&eThe game starts in &610 &eseconds!" to {bedwars.arena.%arg 2%.player::*}
+							show title "&a10" to {bedwars.arena.%arg 2%.player::*} for 1 seconds and 1 ticks fade in and 24 ticks fadeout
+							play raw sound "note.hat" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+						if {bedwars.arena.%arg 2%.waiting} is 9:
+							play raw sound "note.hat" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+						if {bedwars.arena.%arg 2%.waiting} is 8:
+							play raw sound "note.hat" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+						if {bedwars.arena.%arg 2%.waiting} is 7:
+							play raw sound "note.hat" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+						if {bedwars.arena.%arg 2%.waiting} is 6:
+							play raw sound "note.hat" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+						if {bedwars.arena.%arg 2%.waiting} is 5:
+							send "&eThe game starts in &c5 &eseconds!" to {bedwars.arena.%arg 2%.player::*}
+							show title "&e5" to {bedwars.arena.%arg 2%.player::*} for 1 seconds and 1 ticks fade in and 1 ticks fadeout
+							play raw sound "note.hat" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+						if {bedwars.arena.%arg 2%.waiting} is 4:
+							send "&eThe game starts in &c4 &eseconds!" to {bedwars.arena.%arg 2%.player::*}
+							show title "&e4" to {bedwars.arena.%arg 2%.player::*} for 1 seconds and 1 ticks fade in and 1 ticks fadeout
+							play raw sound "note.hat" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+						if {bedwars.arena.%arg 2%.waiting} is 3:
+							send "&eThe game starts in &c3 &eseconds!" to {bedwars.arena.%arg 2%.player::*}
+							show title "&c3" to {bedwars.arena.%arg 2%.player::*} for 1 seconds and 1 ticks fade in and 1 ticks fadeout
+							play raw sound "note.hat" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+						if {bedwars.arena.%arg 2%.waiting} is 2:
+							send "&eThe game starts in &c2 &eseconds!" to {bedwars.arena.%arg 2%.player::*}
+							show title "&c2" to {bedwars.arena.%arg 2%.player::*} for 1 seconds and 1 ticks fade in and 1 ticks fadeout
+							play raw sound "note.hat" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+						if {bedwars.arena.%arg 2%.waiting} is 1:
+							send "&eThe game starts in &c1 &eseconds!" to {bedwars.arena.%arg 2%.player::*}
+							show title "&c1" to {bedwars.arena.%arg 2%.player::*} for 1 seconds and 1 ticks fade in and 1 ticks fadeout
+							play raw sound "note.hat" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+						if {bedwars.arena.%arg 2%.waiting} is 0:
+							play raw sound "note.pling" at {bedwars.arena.%arg 2%.player::*} with pitch 1 volume 1
+							show title "&aGO!" to {bedwars.arena.%arg 2%.player::*} for 1 seconds and 1 ticks fade in and 24 ticks fadeout
+							send "&a&l&m----------------------------------------------------------------" to {bedwars.arena.%arg 2%.player::*}
+							send "                                  &f&lBedWars" to {bedwars.arena.%arg 2%.player::*}
+							send "" to {bedwars.arena.%arg 2%.player::*}
+							send "     &e&lProtect your bed and destroy the enemy beds." to {bedwars.arena.%arg 2%.player::*}
+							send "      &e&lUpgrade yourself and your team by collecting" to {bedwars.arena.%arg 2%.player::*}
+							send "    &e&lIron, Gold, Emerald and Diamond from generators" to {bedwars.arena.%arg 2%.player::*}
+							send "                  &e&lto access powerful upgrades." to {bedwars.arena.%arg 2%.player::*}
+							send "" to {bedwars.arena.%arg 2%.player::*}
+							send "&a&l&m----------------------------------------------------------------" to {bedwars.arena.%arg 2%.player::*}
+							set {bedwars.arena.%arg 2%.state} to "in game"
+							loop all players:
+								if {bedwars.arena.%arg 2%.player::*} contains loop-player:
+									if {bedwars.arena.%arg 2%.%loop-player%.team} is not set:
+										make loop-player execute command "bw randomjointeam"
+							if {bedwars.arena.%arg 2%.teamsize} is "Solo" or "Doubles":
+								loop all players:
+									if {bedwars.arena.%arg 2%.team.red::*} contains loop-player:
+										set the loop-player's tablist name to "&c&lR &c%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "Red"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (255, 85, 85)
+										dye loop-player's chestplate (255, 85, 85)
+										dye loop-player's leggings (255, 85, 85)
+										dye loop-player's boots (255, 85, 85)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+									if {bedwars.arena.%arg 2%.team.blue::*} contains loop-player:
+										set the loop-player's tablist name to "&9&lB &9%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "Blue"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (85, 85, 255)
+										dye loop-player's chestplate (85, 85, 255)
+										dye loop-player's leggings (85, 85, 255)
+										dye loop-player's boots (85, 85, 255)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+									if {bedwars.arena.%arg 2%.team.green::*} contains loop-player:
+										set the loop-player's tablist name to "&a&lG &a%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "Green"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (85, 255, 85)
+										dye loop-player's chestplate (85, 255, 85)
+										dye loop-player's leggings (85, 255, 85)
+										dye loop-player's boots (85, 255, 85)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+									if {bedwars.arena.%arg 2%.team.yellow::*} contains loop-player:
+										set the loop-player's tablist name to "&e&lY &e%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "Yellow"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (255, 255, 85)
+										dye loop-player's chestplate (255, 255, 85)
+										dye loop-player's leggings (255, 255, 85)
+										dye loop-player's boots (255, 255, 85)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+									if {bedwars.arena.%arg 2%.team.aqua::*} contains loop-player:
+										set the loop-player's tablist name to "&b&lA &b%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "Aqua"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (85, 255, 255)
+										dye loop-player's chestplate (85, 255, 255)
+										dye loop-player's leggings (85, 255, 255)
+										dye loop-player's boots (85, 255, 255)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+									if {bedwars.arena.%arg 2%.team.white::*} contains loop-player:
+										set the loop-player's tablist name to "&f&lW &f%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "White"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (255, 255, 255)
+										dye loop-player's chestplate (255, 255, 255)
+										dye loop-player's leggings (255, 255, 255)
+										dye loop-player's boots (255, 255, 255)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+									if {bedwars.arena.%arg 2%.team.pink::*} contains loop-player:
+										set the loop-player's tablist name to "&d&lP &d%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "Pink"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (255, 85, 255)
+										dye loop-player's chestplate (255, 85, 255)
+										dye loop-player's leggings (255, 85, 255)
+										dye loop-player's boots (255, 85, 255)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+									if {bedwars.arena.%arg 2%.team.gray::*} contains loop-player:
+										set the loop-player's tablist name to "&8&lS &8%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "Gray"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (85, 85, 85)
+										dye loop-player's chestplate (85, 85, 85)
+										dye loop-player's leggings (85, 85, 85)
+										dye loop-player's boots (85, 85, 85)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+							if {bedwars.arena.%arg 2%.teamsize} is "Triples" or "Multiples":
+								loop all players:
+									if {bedwars.arena.%arg 2%.team.red::*} contains loop-player:
+										set the loop-player's tablist name to "&c&lR &c%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "Red"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (255, 85, 85)
+										dye loop-player's chestplate (255, 85, 85)
+										dye loop-player's leggings (255, 85, 85)
+										dye loop-player's boots (255, 85, 85)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+									if {bedwars.arena.%arg 2%.team.blue::*} contains loop-player:
+										set the loop-player's tablist name to "&9&lB &9%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "Blue"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (85, 85, 255)
+										dye loop-player's chestplate (85, 85, 255)
+										dye loop-player's leggings (85, 85, 255)
+										dye loop-player's boots (85, 85, 255)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+									if {bedwars.arena.%arg 2%.team.green::*} contains loop-player:
+										set the loop-player's tablist name to "&a&lG &a%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "Green"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (85, 255, 85)
+										dye loop-player's chestplate (85, 255, 85)
+										dye loop-player's leggings (85, 255, 85)
+										dye loop-player's boots (85, 255, 85)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+									if {bedwars.arena.%arg 2%.team.yellow::*} contains loop-player:
+										set the loop-player's tablist name to "&e&lY &e%loop-player%"
+										set {bedwars.arena.%arg 2%.%loop-player%.teamgame} to "Yellow"
+										clear loop-player's inventory
+										equip loop-player with unbreakable leather helmet
+										equip loop-player with unbreakable leather chestplate
+										equip loop-player with unbreakable leather pants
+										equip loop-player with unbreakable leather boots
+										dye loop-player's helmet (255, 255, 85)
+										dye loop-player's chestplate (255, 255, 85)
+										dye loop-player's leggings (255, 255, 85)
+										dye loop-player's boots (255, 255, 85)
+										teleport loop-player to {bedwars.arena.%arg 2%.spawn.RED}
+										heal the loop-player
+										set level of loop-player to 0	
+										set food bar to 20
+							loop all players:
+								if {bedwars.%loop-player%.stats.kits} is "Knight":
+									kitsknight(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Miner":
+									kitsminer(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Builder":
+									kitsbuilder(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Armorer":
+									kitsarmorer(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Archer":
+									kitsarcher(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Swordsman":
+									kitsswordsman(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Destroyer":
+									kitsdestroyer(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Defender":
+									kitsdefender(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Tank":
+									kitstank(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Bowsman":
+									kitsbowsman(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Potioner":
+									kitspotioner(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Guardian":
+									kitsguardian(loop-player)
+								if {bedwars.%loop-player%.stats.kits} is "Pyromaniac":
+									kitsguardian(loop-player)
+							if {bedwars.arena.%arg 2%.teamsize} is "Solo" or "Doubles":
+								set {bedwars.game.%arg 2%.stuff.red} to "true"
+								set {bedwars.game.%arg 2%.irondrop.red} to 2
+								set {bedwars.game.%arg 2%.irondrop.red.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.red} to 12
+								set {bedwars.game.%arg 2%.golddrop.red.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.red} to 32
+								set {bedwars.game.%arg 2%.emeralddrop.red.now} to 32
+								set {bedwars.game.%arg 2%.stuff.blue} to "true"
+								set {bedwars.game.%arg 2%.irondrop.blue.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.blue.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.blue.now} to 32
+								set {bedwars.game.%arg 2%.irondrop.blue} to 2
+								set {bedwars.game.%arg 2%.golddrop.blue} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.blue} to 32
+								set {bedwars.game.%arg 2%.stuff.green} to "true"
+								set {bedwars.game.%arg 2%.irondrop.green.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.green.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.green.now} to 32
+								set {bedwars.game.%arg 2%.irondrop.green} to 2
+								set {bedwars.game.%arg 2%.golddrop.green} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.green} to 32
+								set {bedwars.game.%arg 2%.stuff.yellow} to "true"
+								set {bedwars.game.%arg 2%.irondrop.yellow.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.yellow.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.yellow.now} to 32
+								set {bedwars.game.%arg 2%.irondrop.yellow} to 2
+								set {bedwars.game.%arg 2%.golddrop.yellow} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.yellow} to 32
+								set {bedwars.game.%arg 2%.stuff.aqua} to "true"
+								set {bedwars.game.%arg 2%.irondrop.aqua.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.aqua.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.aqua.now} to 32
+								set {bedwars.game.%arg 2%.irondrop.aqua} to 2
+								set {bedwars.game.%arg 2%.golddrop.aqua} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.aqua} to 32
+								set {bedwars.game.%arg 2%.stuff.white} to "true"
+								set {bedwars.game.%arg 2%.irondrop.white.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.white.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.white.now} to 32
+								set {bedwars.game.%arg 2%.irondrop.white} to 2
+								set {bedwars.game.%arg 2%.golddrop.white} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.white} to 32
+								set {bedwars.game.%arg 2%.stuff.pink} to "true"
+								set {bedwars.game.%arg 2%.irondrop.pink.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.pink.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.pink.now} to 32
+								set {bedwars.game.%arg 2%.irondrop.pink} to 2
+								set {bedwars.game.%arg 2%.golddrop.pink} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.pink} to 32
+								set {bedwars.game.%arg 2%.stuff.gray} to "true"
+								set {bedwars.game.%arg 2%.irondrop.gray.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.gray.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.gray.now} to 32
+								set {bedwars.game.%arg 2%.irondrop.gray} to 2
+								set {bedwars.game.%arg 2%.golddrop.gray} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.gray} to 32
+							if {bedwars.arena.%arg 2%.teamsize} is "Triples" or "Multiples":
+								set {bedwars.game.%arg 2%.stuff.red} to "true"
+								set {bedwars.game.%arg 2%.irondrop.red} to 2
+								set {bedwars.game.%arg 2%.irondrop.red.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.red} to 12
+								set {bedwars.game.%arg 2%.golddrop.red.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.red} to 32
+								set {bedwars.game.%arg 2%.emeralddrop.red.now} to 32
+								set {bedwars.game.%arg 2%.stuff.blue} to "true"
+								set {bedwars.game.%arg 2%.irondrop.blue.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.blue.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.blue.now} to 32
+								set {bedwars.game.%arg 2%.irondrop.blue} to 2
+								set {bedwars.game.%arg 2%.golddrop.blue} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.blue} to 32
+								set {bedwars.game.%arg 2%.stuff.green} to "true"
+								set {bedwars.game.%arg 2%.irondrop.green.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.green.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.green.now} to 32
+								set {bedwars.game.%arg 2%.irondrop.green} to 2
+								set {bedwars.game.%arg 2%.golddrop.green} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.green} to 32
+								set {bedwars.game.%arg 2%.stuff.yellow} to "true"
+								set {bedwars.game.%arg 2%.irondrop.yellow.now} to 2
+								set {bedwars.game.%arg 2%.golddrop.yellow.now} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.yellow.now} to 32
+								set {bedwars.game.%arg 2%.irondrop.yellow} to 2
+								set {bedwars.game.%arg 2%.golddrop.yellow} to 12
+								set {bedwars.game.%arg 2%.emeralddrop.yellow} to 32
+							if size of {bedwars.arena.%arg 2%.team.red::*} is not 0:
+								set {bedwars.game.%arg 2%.state.score.red} to "&a✔"
+							if size of {bedwars.arena.%arg 2%.team.blue::*} is not 0:
+								set {bedwars.game.%arg 2%.state.score.blue} to "&a✔"
+							if size of {bedwars.arena.%arg 2%.team.green::*} is not 0:
+								set {bedwars.game.%arg 2%.state.score.green} to "&a✔"
+							if size of {bedwars.arena.%arg 2%.team.yellow::*} is not 0:
+								set {bedwars.game.%arg 2%.state.score.yellow} to "&a✔"
+							if size of {bedwars.arena.%arg 2%.team.aqua::*} is not 0:
+								set {bedwars.game.%arg 2%.state.score.aqua} to "&a✔"
+							if size of {bedwars.arena.%arg 2%.team.white::*} is not 0:
+								set {bedwars.game.%arg 2%.state.score.white} to "&a✔"
+							if size of {bedwars.arena.%arg 2%.team.pink::*} is not 0:
+								set {bedwars.game.%arg 2%.state.score.pink} to "&a✔"
+							if size of {bedwars.arena.%arg 2%.team.gray::*} is not 0:
+								set {bedwars.game.%arg 2%.state.score.gray} to "&a✔"
+							if {bedwars.%player%.arena.kills} is not set:
+								set {bedwars.%player%.arena.kills} to 0
+							if {bedwars.%player%.arena.finalkills} is not set:
+								set {bedwars.%player%.arena.finalkills} to 0
+							set {bedwars.game.%arg 2%.generator} to "true"
+							set {bedwars.arena.%arg 2%.time} to "diamond upgrade"
+							set {bedwars.game.%arg 2%.time.minutes} to 6
+							set {bedwars.game.%arg 2%.time.seconds} to 0
+							set {bedwars.game.%arg 2%.time.second} to 0
+							set {bedwars.arena.%arg 2%.timevalue} to "%{bedwars.game.%arg 2%.time.minutes}%:%{bedwars.game.%arg 2%.time.seconds}%%{bedwars.game.%arg 2%.time.second}%"
+		if player does not have permission "bedwars.admin":
+			message "{@prefix} &cYou don't have permission to do this!"
+			stop
+		if arg 1 is "admin":
+			message "{@c1}&m----------------{@c2}&m[-&r &e&lBEDWARS &7[{@version}] {@c2}&m-]{@c1}&m----------------"
+			message "&aBedWars Admins Commands:"
+			message "&e/bw create {@c1}➝ &bCreate the arena"
+			message "&e/bw setmainlobby {@c1}➝ &bSet main lobby"
+			message "&e/bw forcestart {@c1}➝ &bForce start the arena"
+			message "&e/bw coins {@c1}➝ &bManage coins economy"
+			message "{@c1}&m------------------------------------------------"
+			stop
+		if arg 1 is "forcestart":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw forcestart <arena>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			set {bedwars.arena.%arg 2%.waiting} to 14
+			send "{@prefix} &eThe Arena has been Force Start by &7%player%&e!" to {bedwars.arena.%arg 2%.player::*}
+			stop
+		if arg 1 is "create":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw create <arena>"
+				stop
+			if {bedwars.arena.%arg 2%} is set:
+				message "{@prefix} &cThat Arena is already Exists!"
+			set {bedwars.arena.%arg 2%} to arg 2
+			message "{@prefix} &aSuccessfully create a arena (%arg 2%)"
+			message "{@prefix} &aNext: &e/bw setteamsize <arena> <size>"
+			stop
+		if arg 1 is "setteamsize":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setteamsize <arena> <size>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			if arg 3 is not set:
+				message "{@prefix} &cUsage: /bw setteamsize <arena> <size>"
+				stop
+			if arg 3 is not "Solo" or "Doubles" or "Triples" or "Multiples":
+				message "{@prefix} &cInvalid Size Team!"
+				message "{@prefix} &cAvailable Size: Solo, Doubles, Triples, Multiples"
+				stop
+			set {bedwars.arena.%arg 2%.teamsize} to arg 3
+			message "{@prefix} &aSuccessfully set a team size (%arg 3%)"
+			message "{@prefix} &aNext: &e/bw setminplayers <arena> <value>"
+			stop
+		if arg 1 is "setminplayers":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setminplayers <arena> <value>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			if arg 3 is not set:
+				message "{@prefix} &cUsage: /bw setminplayers <arena> <value>"
+				stop
+			set {bedwars.arena.%arg 2%.minplayers} to arg 3
+			message "{@prefix} &aSuccessfully set a min players (%arg 3%)"
+			message "{@prefix} &aNext: &e/bw setlobby <arena>"
+			stop
+		if arg 1 is "setlobby":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setlobby <arena>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			set {bedwars.arena.%arg 2%.lobby} to player's location
+			message "{@prefix} &aSuccessfully set a lobby (%player's location%)"
+			message "{@prefix} &aNext: &e/bw setlobbyp1 <arena>"
+			stop
+		if arg 1 is "setlobbyp1":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setlobbyp1 <arena>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			set {bedwars.arena.%arg 2%.lobbyp1} to player's location
+			message "{@prefix} &aSuccessfully set a lobby position 1 (%player's location%)"
+			message "{@prefix} &aNext: &e/bw setlobbyp2 <arena>"
+			stop
+		if arg 1 is "setlobbyp2":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setlobbyp2 <arena>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			set {bedwars.arena.%arg 2%.lobbyp2} to player's location
+			message "{@prefix} &aSuccessfully set a lobby position 2 (%player's location%)"
+			message "{@prefix} &aNext: &e/bw setspectators <arena>"
+		if arg 1 is "setspectators":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setspectatores <arena>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			set {bedwars.arena.%arg 2%.spectators} to player's location
+			message "{@prefix} &aSuccessfully set a spectators spawn (%player's location%)"
+			message "{@prefix} &aNext: &e/bw setspawn <arena> <team>"
+			stop
+		if arg 1 is "setspawn":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setspawn <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			if arg 3 is not set:
+				message "{@prefix} &cUsage: /bw setspawn <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%.teamsize} is "Solo" or "Doubles":
+				if arg 3 is not "RED" or "BLUE" or "GREEN" or "YELLOW" or "AQUA" or "WHITE" or "PINK" or "GRAY":
+					message "{@prefix} &cInvalid Team!"
+					message "{@prefix} &cAvailable Team: RED, BLUE, GREEN, YELLOW, AQUA, WHITE, PINK, GRAY"
+					stop
+				set {bedwars.arena.%arg 2%.spawn.%arg 3%} to player's location
+				message "{@prefix} &aSuccessfully set a spawn for Team %arg 3% (%player's location%)"
+				if {bedwars.arena.%arg 2%.spawn.RED} is set:
+					if {bedwars.arena.%arg 2%.spawn.BLUE} is set:
+						if {bedwars.arena.%arg 2%.spawn.GREEN} is set:
+							if {bedwars.arena.%arg 2%.spawn.YELLOW} is set:
+								if {bedwars.arena.%arg 2%.spawn.AQUA} is set:
+									if {bedwars.arena.%arg 2%.spawn.WHITE} is set:
+										if {bedwars.arena.%arg 2%.spawn.PINK} is set:
+											if {bedwars.arena.%arg 2%.spawn.GRAY} is set:
+												message "{@prefix} &aNext: &e/bw setvillagershop <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%.teamsize} is "Triples" or "Multiples":
+				if arg 3 is not "RED" or "BLUE" or "GREEN" or "YELLOW":
+					message "{@prefix} &cInvalid Team!"
+					message "{@prefix} &cAvailable Team: RED, BLUE, GREEN, YELLOW"
+					stop
+				set {bedwars.arena.%arg 2%.spawn.%arg 3%} to player's location
+				message "{@prefix} &aSuccessfully set a spawn for Team %arg 3% (%player's location%)"
+				if {bedwars.arena.%arg 2%.spawn.RED} is set:
+					if {bedwars.arena.%arg 2%.spawn.BLUE} is set:
+						if {bedwars.arena.%arg 2%.spawn.GREEN} is set:
+							if {bedwars.arena.%arg 2%.spawn.YELLOW} is set:
+								message "{@prefix} &aNext: &e/bw setvillagershop <arena> <team>"
+				stop
+		if arg 1 is "setvillagershop":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setvillagershop <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			if arg 3 is not set:
+				message "{@prefix} &cUsage: /bw setvillagershop <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%.teamsize} is "Solo" or "Doubles":
+				if arg 3 is not "RED" or "BLUE" or "GREEN" or "YELLOW" or "AQUA" or "WHITE" or "PINK" or "GRAY":
+					message "{@prefix} &cInvalid Team!"
+					message "{@prefix} &cAvailable Team: RED, BLUE, GREEN, YELLOW, AQUA, WHITE, PINK, GRAY"
+					stop
+				set {bedwars.arena.%arg 2%.villagershop.%arg 3%} to player's location
+				set {bedwars.arena.%arg 2%.villagershop.%arg 3%.holo} to player's location
+				add 3.3125 to y-coordinate of {bedwars.arena.%arg 2%.villagershop.%arg 3%.holo}
+				message "{@prefix} &aSuccessfully set a villager's shop for Team %arg 3% (%player's location%)"
+				if {bedwars.arena.%arg 2%.villagershop.RED} is set:
+					if {bedwars.arena.%arg 2%.villagershop.BLUE} is set:
+						if {bedwars.arena.%arg 2%.villagershop.GREEN} is set:
+							if {bedwars.arena.%arg 2%.villagershop.YELLOW} is set:
+								if {bedwars.arena.%arg 2%.villagershop.AQUA} is set:
+									if {bedwars.arena.%arg 2%.villagershop.WHITE} is set:
+										if {bedwars.arena.%arg 2%.villagershop.PINK} is set:
+											if {bedwars.arena.%arg 2%.villagershop.GRAY} is set:
+												message "{@prefix} &aNext: &e/bw setvillagerupgrade <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%.teamsize} is "Triples" or "Multiples":
+				if arg 3 is not "RED" or "BLUE" or "GREEN" or "YELLOW":
+					message "{@prefix} &cInvalid Team!"
+					message "{@prefix} &cAvailable Team: RED, BLUE, GREEN, YELLOW"
+					stop
+				set {bedwars.arena.%arg 2%.villagershop.%arg 3%} to player's location
+				set {bedwars.arena.%arg 2%.villagershop.%arg 3%.holo} to player's location
+				add 3.3125 to y-coordinate of {bedwars.arena.%arg 2%.villagershop.%arg 3%.holo}
+				message "{@prefix} &aSuccessfully set a villager's shop for Team %arg 3% (%player's location%)"
+				if {bedwars.arena.%arg 2%.villagershop.RED} is set:
+					if {bedwars.arena.%arg 2%.villagershop.BLUE} is set:
+						if {bedwars.arena.%arg 2%.villagershop.GREEN} is set:
+							if {bedwars.arena.%arg 2%.villagershop.YELLOW} is set:
+								message "{@prefix} &aNext: &e/bw setvillagerupgrade <arena> <team>"
+				stop
+		if arg 1 is "setvillagerupgrade":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setvillagerupgrade <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			if arg 3 is not set:
+				message "{@prefix} &cUsage: /bw setvillagerupgrade <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%.teamsize} is "Solo" or "Doubles":
+				if arg 3 is not "RED" or "BLUE" or "GREEN" or "YELLOW" or "AQUA" or "WHITE" or "PINK" or "GRAY":
+					message "{@prefix} &cInvalid Team!"
+					message "{@prefix} &cAvailable Team: RED, BLUE, GREEN, YELLOW, AQUA, WHITE, PINK, GRAY"
+					stop
+				set {bedwars.arena.%arg 2%.villagerupgrade.%arg 3%} to player's location
+				set {bedwars.arena.%arg 2%.villagerupgrade.%arg 3%.holo} to player's location
+				add 3.3125 to y-coordinate of {bedwars.arena.%arg 2%.villagerupgrade.%arg 3%.holo}
+				message "{@prefix} &aSuccessfully set a villager's upgrade for Team %arg 3% (%player's location%)"
+				if {bedwars.arena.%arg 2%.villagerupgrade.RED} is set:
+					if {bedwars.arena.%arg 2%.villagerupgrade.BLUE} is set:
+						if {bedwars.arena.%arg 2%.villagerupgrade.GREEN} is set:
+							if {bedwars.arena.%arg 2%.villagerupgrade.YELLOW} is set:
+								if {bedwars.arena.%arg 2%.villagerupgrade.AQUA} is set:
+									if {bedwars.arena.%arg 2%.villagerupgrade.WHITE} is set:
+										if {bedwars.arena.%arg 2%.villagerupgrade.PINK} is set:
+											if {bedwars.arena.%arg 2%.villagerupgrade.GRAY} is set:
+												message "{@prefix} &aNext: &e/bw setitemdrop <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%.teamsize} is "Triples" or "Multiples":
+				if arg 3 is not "RED" or "BLUE" or "GREEN" or "YELLOW":
+					message "{@prefix} &cInvalid Team!"
+					message "{@prefix} &cAvailable Team: RED, BLUE, GREEN, YELLOW"
+					stop
+				set {bedwars.arena.%arg 2%.villagerupgrade.%arg 3%} to player's location
+				set {bedwars.arena.%arg 2%.villagerupgrade.%arg 3%.holo} to player's location
+				add 3.3125 to y-coordinate of {bedwars.arena.%arg 2%.villagerupgrade.%arg 3%.holo}
+				message "{@prefix} &aSuccessfully set a villager's upgrade for Team %arg 3% (%player's location%)"
+				if {bedwars.arena.%arg 2%.villagerupgrade.RED} is set:
+					if {bedwars.arena.%arg 2%.villagerupgrade.BLUE} is set:
+						if {bedwars.arena.%arg 2%.villagerupgrade.GREEN} is set:
+							if {bedwars.arena.%arg 2%.villagerupgrade.YELLOW} is set:
+								message "{@prefix} &aNext: &e/bw setitemdrop <arena> <team>"
+				stop
+		if arg 1 is "setitemdrop":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setitemdrop <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			if arg 3 is not set:
+				message "{@prefix} &cUsage: /bw setitemdrop <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%.teamsize} is "Solo" or "Doubles":
+				if arg 3 is not "RED" or "BLUE" or "GREEN" or "YELLOW" or "AQUA" or "WHITE" or "PINK" or "GRAY":
+					message "{@prefix} &cInvalid Team!"
+					message "{@prefix} &cAvailable Team: RED, BLUE, GREEN, YELLOW, AQUA, WHITE, PINK, GRAY"
+					stop
+				set {bedwars.arena.%arg 2%.itemdrop.%arg 3%} to player's location
+				message "{@prefix} &aSuccessfully set a item drop for Team %arg 3% (%player's location%)"
+				if {bedwars.arena.%arg 2%.itemdrop.RED} is set:
+					if {bedwars.arena.%arg 2%.itemdrop.BLUE} is set:
+						if {bedwars.arena.%arg 2%.itemdrop.GREEN} is set:
+							if {bedwars.arena.%arg 2%.itemdrop.YELLOW} is set:
+								if {bedwars.arena.%arg 2%.itemdrop.AQUA} is set:
+									if {bedwars.arena.%arg 2%.itemdrop.WHITE} is set:
+										if {bedwars.arena.%arg 2%.itemdrop.PINK} is set:
+											if {bedwars.arena.%arg 2%.itemdrop.GRAY} is set:
+												message "{@prefix} &aNext: &e/bw setdiamonddrop <arena>"
+				stop
+			if {bedwars.arena.%arg 2%.teamsize} is "Triples" or "Multiples":
+				if arg 3 is not "RED" or "BLUE" or "GREEN" or "YELLOW":
+					message "{@prefix} &cInvalid Team!"
+					message "{@prefix} &cAvailable Team: RED, BLUE, GREEN, YELLOW"
+					stop
+				set {bedwars.arena.%arg 2%.itemdrop.%arg 3%} to player's location
+				message "{@prefix} &aSuccessfully set a item drop for Team %arg 3% (%player's location%)"
+				if {bedwars.arena.%arg 2%.itemdrop.RED} is set:
+					if {bedwars.arena.%arg 2%.itemdrop.BLUE} is set:
+						if {bedwars.arena.%arg 2%.itemdrop.GREEN} is set:
+							if {bedwars.arena.%arg 2%.itemdrop.YELLOW} is set:
+								message "{@prefix} &aNext: &e/bw setdiamonddrop <arena>"
+				stop
+		if arg 1 is "setdiamonddrop":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setdiamonddrop <arena> <number>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			if arg 3 is not set:
+				message "{@prefix} &cUsage: /bw setdiamonddrop <arena> <number>"
+				stop
+			if arg 3 is not "0" or "1" or "2" or "3" or "4" or "5" or "6" or "7" or "8" or "9":
+				message "{@prefix} &cInvalid Number!"
+				message "{@prefix} &cAvailable Number: 0 to 9"
+				stop
+			if {bedwars.arena.%arg 2%.diamonddrop.total} is not set:
+				set {bedwars.arena.%arg 2%.diamonddrop.total} to 0
+			if {bedwars.arena.%arg 3%.diamonddrop.%arg 3%} is not set:
+				add 1 to {bedwars.arena.%arg 2%.diamonddrop.total}
+			set {bedwars.arena.%arg 2%.diamonddrop.%arg 3%} to player's location
+			set {bedwars.arena.%arg 2%.diamonddrop.%arg 3%.holo} to player's location
+			add 4.3125 to y-coordinate of {bedwars.arena.%arg 2%.diamonddrop.%arg 3%.holo}
+			message "{@prefix} &aSuccessfully set a diamond drop number %arg 3% (%player's location%)"
+			if {bedwars.arena.%arg 2%.diamonddrop.total} is 4:
+				message "{@prefix} &aNext: &e/bw setemeralddrop <arena> <number>"
+				message "{@prefix} &aYou can set diamond drop again if that what you want!"
+				message "{@prefix} &aMax you can set is 10 your total set now is 4"
+				stop
+			if {bedwars.arena.%arg 2%.diamonddrop.total} is 10:
+				message "{@prefix} &aNext: &e/bw setemeralddrop <arena> <number>"
+				message "{@prefix} &aYour total set now is 10"
+			stop
+		if arg 1 is "setemeralddrop":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setemeralddrop <arena> <number>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			if arg 3 is not set:
+				message "{@prefix} &cUsage: /bw setemeralddrop <arena> <number>"
+				stop
+			if arg 3 is not "0" or "1" or "2" or "3" or "4" or "5" or "6" or "7" or "8" or "9":
+				message "{@prefix} &cInvalid Number!"
+				message "{@prefix} &cAvailable Number: 0 to 9"
+				stop
+			if {bedwars.arena.%arg 2%.emeralddrop.total} is not set:
+				set {bedwars.arena.%arg 2%.emeralddrop.total} to 0
+			if {bedwars.arena.%arg 3%.emeralddrop.%arg 3%} is not set:
+				add 1 to {bedwars.arena.%arg 2%.emeralddrop.total}
+			set {bedwars.arena.%arg 2%.emeralddrop.%arg 3%} to player's location
+			set {bedwars.arena.%arg 2%.emeralddrop.%arg 3%.holo} to player's location
+			add 4.3125 to y-coordinate of {bedwars.arena.%arg 2%.emeralddrop.%arg 3%.holo}
+			message "{@prefix} &aSuccessfully set a emerald drop number %arg 3% (%player's location%)"
+			if {bedwars.arena.%arg 2%.emeralddrop.total} is 4:
+				message "{@prefix} &aNext: &e/bw setbed <arena> <team>"
+				message "{@prefix} &aYou can set emerald drop again if that what you want!"
+				message "{@prefix} &aMax you can set is 10 your total set now is 4"
+				stop
+			if {bedwars.arena.%arg 2%.emeralddrop.total} is 10:
+				message "{@prefix} &aNext: &e/bw setbed <arena> <team>"
+				message "{@prefix} &aYour total set now is 10"
+			stop
+		if arg 1 is "setbed":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setbed <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			if arg 3 is not set:
+				message "{@prefix} &cUsage: /bw setbed <arena> <team>"
+				stop
+			if {bedwars.arena.%arg 2%.teamsize} is "Solo" or "Doubles":
+				if arg 3 is not "RED" or "BLUE" or "GREEN" or "YELLOW" or "AQUA" or "WHITE" or "PINK" or "GRAY":
+					message "{@prefix} &cInvalid Team!"
+					message "{@prefix} &cAvailable Team: RED, BLUE, GREEN, YELLOW, AQUA, WHITE, PINK, GRAY"
+					stop
+				else:
+					loop blocks in radius 3 around targeted block:
+						if loop-block contains bed:
+							set {bedwars.arena.%arg 2%.bedlocationblock.%arg 3%} to location of loop-block
+							set {bedwars.arena.%arg 2%.bedlocation.%arg 3%::%{bedwars.arena.%arg 2%.bedlocationblock.%arg 3%}%} to loop-block
+						if loop-block doesn't contain bed:
+							message "{@prefix} &cYou must look at bed team to setbed!"
+							stop
+						set {bedwars.arena.%arg 2%.bed.%arg 3%} to type of block at {bedwars.arena.%arg 2%.bedlocation.%arg 3%::%{bedwars.arena.%arg 2%.bedlocationblock.%arg 3%}%}
+						message "{@prefix} &aSuccessfully set a team bed for %arg 3%"
+					if {bedwars.arena.%arg 2%.bed.RED} is set:
+						if {bedwars.arena.%arg 2%.bed.BLUE} is set:
+							if {bedwars.arena.%arg 2%.bed.GREEN} is set:
+								if {bedwars.arena.%arg 2%.bed.YELLOW} is set:
+									if {bedwars.arena.%arg 2%.bed.AQUA} is set:
+										if {bedwars.arena.%arg 2%.bed.WHITE} is set:
+											if {bedwars.arena.%arg 2%.bed.PINK} is set:
+												if {bedwars.arena.%arg 2%.bed.GRAY} is set:
+													message "{@prefix} &aNext: &e/bw setarenap1 <arena>"
+			if {bedwars.arena.%arg 2%.teamsize} is "Triples" or "Multiples":
+				if arg 3 is not "RED" or "BLUE" or "GREEN" or "YELLOW":
+					message "{@prefix} &cInvalid Team!"
+					message "{@prefix} &cAvailable Team: RED, BLUE, GREEN, YELLOW"
+					stop
+				else:
+					loop blocks in radius 3 around targeted block:
+						if loop-block contains bed:
+							set {bedwars.arena.%arg 2%.bedlocationblock.%arg 3%} to location of loop-block
+							set {bedwars.arena.%arg 2%.bedlocation.%arg 3%::%{bedwars.arena.%arg 2%.bedlocationblock.%arg 3%}%} to loop-block
+						if loop-block doesn't contain bed:
+							message "{@prefix} &cYou must look at bed team to setbed!"
+							stop
+						set {bedwars.arena.%arg 2%.bed.%arg 3%} to type of block at {bedwars.arena.%arg 2%.bedlocation.%arg 3%::%{bedwars.arena.%arg 2%.bedlocationblock.%arg 3%}%}
+						message "{@prefix} &aSuccessfully set a team bed for %arg 3%"
+					if {bedwars.arena.%arg 2%.bed.RED} is set:
+						if {bedwars.arena.%arg 2%.bed.BLUE} is set:
+							if {bedwars.arena.%arg 2%.bed.GREEN} is set:
+								if {bedwars.arena.%arg 2%.bed.YELLOW} is set:
+									message "{@prefix} &aNext: &e/bw setarenap1 <arena>"
+			stop
+		if arg 1 is "setarenap1":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setarenap1 <arena>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			set {bedwars.arena.%arg 2%.pos1} to player's location
+			message "{@prefix} &aSuccessfully set a arena position 1 (%player's location%)"
+			message "{@prefix} &aNext: &e/bw setarenap2 <arena>"
+			stop
+		if arg 1 is "setarenap2":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw setarenap2 <arena>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			set {bedwars.arena.%arg 2%.pos2} to player's location
+			message "{@prefix} &aSuccessfully set a arena position 2 (%player's location%)"
+			message "{@prefix} &aNext: &e/bw save <arena>"
+			stop
+		if arg 1 is "save":
+			if arg 2 is not set:
+				message "{@prefix} &cUsage: /bw save <arena>"
+				stop
+			if {bedwars.arena.%arg 2%} is not set:
+				message "{@prefix} &cInvalid Arena!"
+				stop
+			if {bedwars.arena.%arg 2%.teamsize} is "Solo":
+				set {bedwars.arena.%arg 2%.maxplayers} to 8
+			if {bedwars.arena.%arg 2%.teamsize} is "Triples":
+				set {bedwars.arena.%arg 2%.maxplayers} to 12
+			if {bedwars.arena.%arg 2%.teamsize} is "Doubles" or "Multiples":
+				set {bedwars.arena.%arg 2%.maxplayers} to 16
+			set {bedwars.arena.%arg 2%.savearena.lag} to 0
+			set {bedwars.arena.%arg 2%.savearena.total} to 0
+			set {bedwars.arena.%arg 2%.savearena.blocks} to 0
+			wait 10 ticks	
+			loop blocks within {bedwars.arena.%arg 2%.pos1} to {bedwars.arena.%arg 2%.pos2}:
+				if loop-block is not air:
+					add 1 to {bedwars.arena.%arg 2%.savearena.total}
+			loop blocks within {bedwars.arena.%arg 2%.pos1} to {bedwars.arena.%arg 2%.pos2}:
+				if loop-block is not air:
+					set {bedwars.arena.%arg 2%.savearena.blocks::%location of loop-block%} to type of block at loop-block
+					add 1 to {bedwars.arena.%arg 2%.savearena.blocks}
+					add 1 to {bedwars.arena.%arg 2%.savearena.lag}
+					message "{@prefix} &aSuccessfully save the arena (%{bedwars.arena.%arg 2%.savearena.blocks}%&7/&a%{bedwars.arena.%arg 2%.savearena.total}%)"
+					if {bedwars.arena.%arg 2%.savearena.lag} = 500:
+						set {bedwars.arena.%arg 2%.savearena.lag} to 0
+						wait 2 seconds
+						chance of 50%:
+							wait 1 second
+						else:
+							wait 0.5 seconds
+			set {bedwars.arena.%arg 2%.savelobby.lag} to 0
+			set {bedwars.arena.%arg 2%.savelobby.total} to 0
+			set {bedwars.arena.%arg 2%.savelobby.blocks} to 0
+			wait 10 ticks	
+			loop blocks within {bedwars.arena.%arg 2%.lobbyp1} to {bedwars.arena.%arg 2%.lobbyp2}:
+				if loop-block is not air:
+					add 1 to {bedwars.arena.%arg 2%.savelobby.total}
+			loop blocks within {bedwars.arena.%arg 2%.lobbyp1} to {bedwars.arena.%arg 2%.lobbyp2}:
+				if loop-block is not air:
+					set {bedwars.arena.%arg 2%.savelobby.blocks::%location of loop-block%} to type of block at loop-block
+					add 1 to {bedwars.arena.%arg 2%.savelobby.blocks}
+					add 1 to {bedwars.arena.%arg 2%.savelobby.lag}
+					message "{@prefix} &aSuccessfully save the arena lobby (%{bedwars.arena.%arg 2%.savelobby.blocks}%&7/&a%{bedwars.arena.%arg 2%.savelobby.total}%)"
+					if {bedwars.arena.%arg 2%.savelobby.lag} = 500:
+						set {bedwars.arena.%arg 2%.savelobby.lag} to 0
+						wait 2 seconds
+						chance of 50%:
+							wait 1 second
+						else:
+							wait 0.5 seconds
+			if {bedwars.mainlobby} is not set:
+				message "{@prefix} &aNext: &e/bw setmainlobby"
+			message "{@prefix} &aYour arena is ready!"
+			set {bedwars.arena.%arg 2%.state} to "wait"
+			if {bedwars.arena::*} contains arg 2:
+				remove arg 2 from {bedwars.arena::*}
+			add arg 2 to {bedwars.arena::*}
+			stop
+		if arg 1 is "setmainlobby":
+			set {bedwars.mainlobby} to player's location
+			message "{@prefix} &aSuccessfully set the main lobby (%player's location%)"
+			stop
+
+every 1 seconds:
+	loop {bedwars.arena::*}:
+		if {bedwars.arena.%loop-value%.state} is "in game":
+			remove 1 from {bedwars.game.%loop-value%.time.second}
+			if {bedwars.game.%loop-value%.time.second} < 0:
+				set {bedwars.game.%loop-value%.time.second} to 9
+				remove 1 from {bedwars.game.%loop-value%.time.seconds}
+			if {bedwars.game.%loop-value%.time.seconds} < 0:
+				set {bedwars.game.%loop-value%.time.seconds} to 5
+				remove 1 from {bedwars.game.%loop-value%.time.minutes}
+			if {bedwars.game.%loop-value%.time.minutes} < 0:
+				set {bedwars.game.%loop-value%.time.minutes} to 5
+				if {bedwars.arena.%loop-value%.time} is "diamond upgrade":
+					set {bedwars.game.%loop-value%.diamondtier} to "II"
+					send "{@prefix} &b&lDiamond Generators &ehave been upgraded to Tier &cII" to {bedwars.arena.%loop-value%.player::*}
+					set {bedwars.arena.%loop-value%.time} to "emerald upgrade"
+					stop
+				if {bedwars.arena.%loop-value%.time} is "emerald upgrade":
+					set {bedwars.game.%loop-value%.emeraldtier} to "II"
+					send "{@prefix} &2&lEmerald Generators &ehave been upgraded to Tier &cII" to {bedwars.arena.%loop-value%.player::*}
+					set {bedwars.arena.%loop-value%.time} to "diamond maxed"
+					stop
+				if {bedwars.arena.%loop-value%.time} is "diamond maxed":
+					set {bedwars.game.%loop-value%.diamondtier} to "III"
+					send "{@prefix} &b&lDiamond Generators &ehave been upgraded to Tier &cIII" to {bedwars.arena.%loop-value%.player::*}
+					set {bedwars.arena.%loop-value%.time} to "emerald maxed"
+					stop
+				if {bedwars.arena.%loop-value%.time} is "emerald maxed":
+					set {bedwars.game.%loop-value%.emeraldtier} to "III"
+					send "{@prefix} &b&lDiamond Generators &ehave been upgraded to Tier &cIII" to {bedwars.arena.%loop-value%.player::*}
+					set {bedwars.arena.%loop-value%.time} to "bed destruction"
+					stop
+
+every 1 tick:
+	loop {bedwars.arena::*}:
+		if {bedwars.arena.%loop-value%.teamsize} is "Solo" or "Doubles":
+			if {bedwars.game.%loop-value%.stuff.red} is "true":
+				if {bedwars.game.%loop-value%.irondrop.red} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.RED}
+					set {bedwars.game.%loop-value%.irondrop.red} to {bedwars.game.%loop-value%.irondrop.red.now}
+				if {bedwars.game.%loop-value%.golddrop.red} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.RED}
+					set {bedwars.game.%loop-value%.golddrop.red} to {bedwars.game.%loop-value%.golddrop.red.now}
+				if {bedwars.game.%loop-value%.emeraldforge.red} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.red} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.RED}
+						set {bedwars.game.%loop-value%.emeralddrop.red} to {bedwars.game.%loop-value%.emeralddrop.red.now}
+			if {bedwars.game.%loop-value%.stuff.blue} is "true":
+				if {bedwars.game.%loop-value%.irondrop.blue} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.BLUE}
+					set {bedwars.game.%loop-value%.irondrop.blue} to {bedwars.game.%loop-value%.irondrop.blue.now}
+				if {bedwars.game.%loop-value%.golddrop.blue} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.BLUE}
+					set {bedwars.game.%loop-value%.golddrop.blue} to {bedwars.game.%loop-value%.golddrop.blue.now}
+				if {bedwars.game.%loop-value%.emeraldforge.blue} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.blue} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.BLUE}
+						set {bedwars.game.%loop-value%.emeralddrop.blue} to {bedwars.game.%loop-value%.emeralddrop.blue.now}
+			if {bedwars.game.%loop-value%.stuff.green} is "true":
+				if {bedwars.game.%loop-value%.irondrop.green} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.GREEN}
+					set {bedwars.game.%loop-value%.irondrop.green} to {bedwars.game.%loop-value%.irondrop.green.now}
+				if {bedwars.game.%loop-value%.golddrop.green} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.GREEN}
+					set {bedwars.game.%loop-value%.golddrop.green} to {bedwars.game.%loop-value%.golddrop.green.now}
+				if {bedwars.game.%loop-value%.emeraldforge.green} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.green} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.GREEN}
+						set {bedwars.game.%loop-value%.emeralddrop.green} to {bedwars.game.%loop-value%.emeralddrop.green.now}
+			if {bedwars.game.%loop-value%.stuff.yellow} is "true":
+				if {bedwars.game.%loop-value%.irondrop.yellow} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.YELLOW}
+					set {bedwars.game.%loop-value%.irondrop.yellow} to {bedwars.game.%loop-value%.irondrop.yellow.now}
+				if {bedwars.game.%loop-value%.golddrop.yellow} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.YELLOW}
+					set {bedwars.game.%loop-value%.golddrop.yellow} to {bedwars.game.%loop-value%.golddrop.yellow.now}
+				if {bedwars.game.%loop-value%.emeraldforge.yellow} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.yellow} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.YELLOW}
+						set {bedwars.game.%loop-value%.emeralddrop.yellow} to {bedwars.game.%loop-value%.emeralddrop.yellow.now}
+			if {bedwars.game.%loop-value%.stuff.aqua} is "true":
+				if {bedwars.game.%loop-value%.irondrop.aqua} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.AQUA}
+					set {bedwars.game.%loop-value%.irondrop.aqua} to {bedwars.game.%loop-value%.irondrop.aqua.now}
+				if {bedwars.game.%loop-value%.golddrop.aqua} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.AQUA}
+					set {bedwars.game.%loop-value%.golddrop.aqua} to {bedwars.game.%loop-value%.golddrop.aqua.now}
+				if {bedwars.game.%loop-value%.emeraldforge.aqua} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.aqua} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.AQUA}
+						set {bedwars.game.%loop-value%.emeralddrop.aqua} to {bedwars.game.%loop-value%.emeralddrop.aqua.now}
+			if {bedwars.game.%loop-value%.stuff.white} is "true":
+				if {bedwars.game.%loop-value%.irondrop.white} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.WHITE}
+					set {bedwars.game.%loop-value%.irondrop.white} to {bedwars.game.%loop-value%.irondrop.white.now}
+				if {bedwars.game.%loop-value%.golddrop.white} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.WHITE}
+					set {bedwars.game.%loop-value%.golddrop.white} to {bedwars.game.%loop-value%.golddrop.white.now}
+				if {bedwars.game.%loop-value%.emeraldforge.white} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.white} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.WHITE}
+						set {bedwars.game.%loop-value%.emeralddrop.white} to {bedwars.game.%loop-value%.emeralddrop.white.now}
+			if {bedwars.game.%loop-value%.stuff.pink} is "true":
+				if {bedwars.game.%loop-value%.irondrop.pink} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.PINK}
+					set {bedwars.game.%loop-value%.irondrop.pink} to {bedwars.game.%loop-value%.irondrop.pink.now}
+				if {bedwars.game.%loop-value%.golddrop.pink} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.PINK}
+					set {bedwars.game.%loop-value%.golddrop.pink} to {bedwars.game.%loop-value%.golddrop.pink.now}
+				if {bedwars.game.%loop-value%.emeraldforge.pink} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.pink} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.PINK}
+						set {bedwars.game.%loop-value%.emeralddrop.pink} to {bedwars.game.%loop-value%.emeralddrop.pink.now}
+			if {bedwars.game.%loop-value%.stuff.gray} is "true":
+				if {bedwars.game.%loop-value%.irondrop.gray} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.GRAY}
+					set {bedwars.game.%loop-value%.irondrop.gray} to {bedwars.game.%loop-value%.irondrop.gray.now}
+				if {bedwars.game.%loop-value%.golddrop.gray} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.GRAY}
+					set {bedwars.game.%loop-value%.golddrop.gray} to {bedwars.game.%loop-value%.golddrop.gray.now}
+				if {bedwars.game.%loop-value%.emeraldforge.gray} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.gray} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.GRAY}
+						set {bedwars.game.%loop-value%.emeralddrop.gray} to {bedwars.game.%loop-value%.emeralddrop.gray.now}
+		if {bedwars.arena.%loop-value%.teamsize} is "Triples" or "Multiples":
+			if {bedwars.game.%loop-value%.stuff.red} is "true":
+				if {bedwars.game.%loop-value%.irondrop.red} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.RED}
+					set {bedwars.game.%loop-value%.irondrop.red} to {bedwars.game.%loop-value%.irondrop.red.now}
+				if {bedwars.game.%loop-value%.golddrop.red} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.RED}
+					set {bedwars.game.%loop-value%.golddrop.red} to {bedwars.game.%loop-value%.golddrop.red.now}
+				if {bedwars.game.%loop-value%.emeraldforge.red} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.red} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.RED}
+						set {bedwars.game.%loop-value%.emeralddrop.red} to {bedwars.game.%loop-value%.emeralddrop.red.now}
+			if {bedwars.game.%loop-value%.stuff.blue} is "true":
+				if {bedwars.game.%loop-value%.irondrop.blue} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.BLUE}
+					set {bedwars.game.%loop-value%.irondrop.blue} to {bedwars.game.%loop-value%.irondrop.blue.now}
+				if {bedwars.game.%loop-value%.golddrop.blue} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.BLUE}
+					set {bedwars.game.%loop-value%.golddrop.blue} to {bedwars.game.%loop-value%.golddrop.blue.now}
+				if {bedwars.game.%loop-value%.emeraldforge.blue} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.blue} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.BLUE}
+						set {bedwars.game.%loop-value%.emeralddrop.blue} to {bedwars.game.%loop-value%.emeralddrop.blue.now}
+			if {bedwars.game.%loop-value%.stuff.green} is "true":
+				if {bedwars.game.%loop-value%.irondrop.green} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.GREEN}
+					set {bedwars.game.%loop-value%.irondrop.green} to {bedwars.game.%loop-value%.irondrop.green.now}
+				if {bedwars.game.%loop-value%.golddrop.green} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.GREEN}
+					set {bedwars.game.%loop-value%.golddrop.green} to {bedwars.game.%loop-value%.golddrop.green.now}
+				if {bedwars.game.%loop-value%.emeraldforge.green} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.green} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.GREEN}
+						set {bedwars.game.%loop-value%.emeralddrop.green} to {bedwars.game.%loop-value%.emeralddrop.green.now}
+			if {bedwars.game.%loop-value%.stuff.yellow} is "true":
+				if {bedwars.game.%loop-value%.irondrop.yellow} <= 0:
+					drop 1 iron_ingot at {bedwars.arena.%loop-value%.itemdrop.YELLOW}
+					set {bedwars.game.%loop-value%.irondrop.yellow} to {bedwars.game.%loop-value%.irondrop.yellow.now}
+				if {bedwars.game.%loop-value%.golddrop.yellow} <= 0:
+					drop 1 gold_ingot at {bedwars.arena.%loop-value%.itemdrop.YELLOW}
+					set {bedwars.game.%loop-value%.golddrop.yellow} to {bedwars.game.%loop-value%.golddrop.yellow.now}
+				if {bedwars.game.%loop-value%.emeraldforge.yellow} is "true":
+					if {bedwars.game.%loop-value%.emeralddrop.yellow} <= 0:
+						drop 1 emerald at {bedwars.arena.%loop-value%.itemdrop.YELLOW}
+						set {bedwars.game.%loop-value%.emeralddrop.yellow} to {bedwars.game.%loop-value%.emeralddrop.yellow.now}
+
+every 1 tick:
+	loop {bedwars.arena::*}:
+		if {bedwars.arena.%loop-value%.state} is "in game":
+			if size of {bedwars.arena.%loop-value%.team.red::*} is 0:
+				if {bedwars.game.%loop-value%.state.score.red} is "&c✖":
+					stop
+				set block at {bedwars.arena.%loop-value%.bedlocation.RED::%{bedwars.arena.%loop-value%.bedlocationblock.RED}%} to air
+				set {bedwars.game.%loop-value%.state.score.red} to "&c✖"
+			if size of {bedwars.arena.%loop-value%.team.blue::*} is 0:
+				if {bedwars.game.%loop-value%.state.score.blue} is "&c✖":
+					stop
+				set block at {bedwars.arena.%loop-value%.bedlocation.BLUE::%{bedwars.arena.%loop-value%.bedlocationblock.BLUE}%} to air
+				set {bedwars.game.%loop-value%.state.score.blue} to "&c✖"
+			if size of {bedwars.arena.%loop-value%.team.green::*} is 0:
+				if {bedwars.game.%loop-value%.state.score.green} is "&c✖":
+					stop
+				set block at {bedwars.arena.%loop-value%.bedlocation.GREEN::%{bedwars.arena.%loop-value%.bedlocationblock.GREEN}%} to air
+				set {bedwars.game.%loop-value%.state.score.green} to "&c✖"
+			if size of {bedwars.arena.%loop-value%.team.yellow::*} is 0:
+				if {bedwars.game.%loop-value%.state.score.yellow} is "&c✖":
+					stop
+				set block at {bedwars.arena.%loop-value%.bedlocation.YELLOW::%{bedwars.arena.%loop-value%.bedlocationblock.YELLOW}%} to air
+				set {bedwars.game.%loop-value%.state.score.yellow} to "&c✖"
+			if size of {bedwars.arena.%loop-value%.team.aqua::*} is 0:
+				if {bedwars.game.%loop-value%.state.score.aqua} is "&c✖":
+					stop
+				set block at {bedwars.arena.%loop-value%.bedlocation.AQUA::%{bedwars.arena.%loop-value%.bedlocationblock.AQUA}%} to air
+				set {bedwars.game.%loop-value%.state.score.aqua} to "&c✖"
+			if size of {bedwars.arena.%loop-value%.team.white::*} is 0:
+				if {bedwars.game.%loop-value%.state.score.white} is "&c✖":
+					stop
+				set block at {bedwars.arena.%loop-value%.bedlocation.WHITE::%{bedwars.arena.%loop-value%.bedlocationblock.WHITE}%} to air
+				set {bedwars.game.%loop-value%.state.score.white} to "&c✖"
+			if size of {bedwars.arena.%loop-value%.team.pink::*} is 0:
+				if {bedwars.game.%loop-value%.state.score.pink} is "&c✖":
+					stop
+				set block at {bedwars.arena.%loop-value%.bedlocation.PINK::%{bedwars.arena.%loop-value%.bedlocationblock.PINK}%} to air
+				set {bedwars.game.%loop-value%.state.score.pink} to "&c✖"
+			if size of {bedwars.arena.%loop-value%.team.gray::*} is 0:
+				if {bedwars.game.%loop-value%.state.score.gray} is "&c✖":
+					stop
+				set block at {bedwars.arena.%loop-value%.bedlocation.GRAY::%{bedwars.arena.%loop-value%.bedlocationblock.GRAY}%} to air
+				set {bedwars.game.%loop-value%.state.score.gray} to "&c✖"
+
+every 1 tick:
+	loop {bedwars.arena::*}:
+		if {bedwars.arena.%loop-value%.state} is "in game":
+			if {bedwars.game.%loop-value%.state.bed.red} is "false":
+				if size of {bedwars.arena.%loop-value%.team.red::*} is 0:
+					stop
+				set {bedwars.game.%loop-value%.state.score.red} to "&a%size of {bedwars.arena.%loop-value%.team.red::*}%"
+			if {bedwars.game.%loop-value%.state.bed.blue} is "false":
+				if size of {bedwars.arena.%loop-value%.team.blue::*} is 0:
+					stop
+				set {bedwars.game.%loop-value%.state.score.blue} to "&a%size of {bedwars.arena.%loop-value%.team.blue::*}%"
+			if {bedwars.game.%loop-value%.state.bed.green} is "false":
+				if size of {bedwars.arena.%loop-value%.team.green::*} is 0:
+					stop
+				set {bedwars.game.%loop-value%.state.score.green} to "&a%size of {bedwars.arena.%loop-value%.team.green::*}%"
+			if {bedwars.game.%loop-value%.state.bed.red} is "false":
+				if size of {bedwars.arena.%loop-value%.team.red::*} is 0:
+					stop
+				set {bedwars.game.%loop-value%.state.score.red} to "&a%size of {bedwars.arena.%loop-value%.team.red::*}%"
+			if {bedwars.game.%loop-value%.state.bed.red} is "false":
+				if size of {bedwars.arena.%loop-value%.team.red::*} is 0:
+					stop
+				set {bedwars.game.%loop-value%.state.score.red} to "&a%size of {bedwars.arena.%loop-value%.team.red::*}%"
+			if {bedwars.game.%loop-value%.state.bed.red} is "false":
+				if size of {bedwars.arena.%loop-value%.team.red::*} is 0:
+					stop
+				set {bedwars.game.%loop-value%.state.score.red} to "&a%size of {bedwars.arena.%loop-value%.team.red::*}%"
+			if {bedwars.game.%loop-value%.state.bed.red} is "false":
+				if size of {bedwars.arena.%loop-value%.team.red::*} is 0:
+					stop
+				set {bedwars.game.%loop-value%.state.score.red} to "&a%size of {bedwars.arena.%loop-value%.team.red::*}%"
+			if {bedwars.game.%loop-value%.state.bed.red} is "false":
+				if size of {bedwars.arena.%loop-value%.team.red::*} is 0:
+					stop
+				set {bedwars.game.%loop-value%.state.score.red} to "&a%size of {bedwars.arena.%loop-value%.team.red::*}%"
+
+every 1 tick:
+	loop {bedwars.arena::*}:
+		if {bedwars.arena.%loop-value%.teamsize} is "Solo" or "Doubles":
+			if {bedwars.game.%loop-value%.stuff.red} is "true":
+				if {bedwars.game.%loop-value%.villager.red} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.RED} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.red} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.RED} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.red} to {_id2}
+				set {bedwars.game.%loop-value%.villager.red} to "false"
+			if {bedwars.game.%loop-value%.stuff.blue} is "true":
+				if {bedwars.game.%loop-value%.villager.blue} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.BLUE} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.blue} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.BLUE} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.blue} to {_id2}
+				set {bedwars.game.%loop-value%.villager.blue} to "false"
+			if {bedwars.game.%loop-value%.stuff.green} is "true":
+				if {bedwars.game.%loop-value%.villager.green} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.GREEN} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.green} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.GREEN} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.green} to {_id2}
+				set {bedwars.game.%loop-value%.villager.green} to "false"
+			if {bedwars.game.%loop-value%.stuff.yellow} is "true":
+				if {bedwars.game.%loop-value%.villager.yellow} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.YELLOW} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.yellow} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.YELLOW} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.yellow} to {_id2}
+				set {bedwars.game.%loop-value%.villager.yellow} to "false"
+			if {bedwars.game.%loop-value%.stuff.aqua} is "true":
+				if {bedwars.game.%loop-value%.villager.aqua} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.AQUA} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.aqua} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.AQUA} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.aqua} to {_id2}
+				set {bedwars.game.%loop-value%.villager.aqua} to "false"
+			if {bedwars.game.%loop-value%.stuff.white} is "true":
+				if {bedwars.game.%loop-value%.villager.white} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.WHITE} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.white} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.WHITE} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.white} to {_id2}
+				set {bedwars.game.%loop-value%.villager.white} to "false"
+			if {bedwars.game.%loop-value%.stuff.pink} is "true":
+				if {bedwars.game.%loop-value%.villager.pink} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.PINK} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.pink} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.PINK} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.pink} to {_id2}
+				set {bedwars.game.%loop-value%.villager.pink} to "false"
+			if {bedwars.game.%loop-value%.stuff.gray} is "true":
+				if {bedwars.game.%loop-value%.villager.gray} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.GRAY} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.gray} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.GRAY} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.gray} to {_id2}
+				set {bedwars.game.%loop-value%.villager.gray} to "false"
+		if {bedwars.arena.%loop-value%.teamsize} is "Triples" or "Multiples":
+			if {bedwars.game.%loop-value%.stuff.red} is "true":
+				if {bedwars.game.%loop-value%.villager.red} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.RED} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.red} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.RED} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.red} to {_id2}
+				set {bedwars.game.%loop-value%.villager.red} to "false"
+			if {bedwars.game.%loop-value%.stuff.blue} is "true":
+				if {bedwars.game.%loop-value%.villager.blue} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.BLUE} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.blue} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.BLUE} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.blue} to {_id2}
+				set {bedwars.game.%loop-value%.villager.blue} to "false"
+			if {bedwars.game.%loop-value%.stuff.green} is "true":
+				if {bedwars.game.%loop-value%.villager.green} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.GREEN} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.green} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.GREEN} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.green} to {_id2}
+				set {bedwars.game.%loop-value%.villager.green} to "false"
+			if {bedwars.game.%loop-value%.stuff.yellow} is "true":
+				if {bedwars.game.%loop-value%.villager.yellow} is "false":
+					stop
+				create a citizen named "&e&lITEM SHOP" at {bedwars.arena.%loop-value%.villagershop.YELLOW} as a villager
+				set {_id} to last created citizen
+				set citizen {_id} nametag invisible
+				make citizen {_id} invulnerable
+				give npc {_id} the look close trait
+				set {bedwars.game.%loop-value%.villagershop.yellow} to {_id}
+				create a citizen named "&e&lUPGRADES" at {bedwars.arena.%loop-value%.villagerupgrade.YELLOW} as a villager
+				set {_id2} to last created citizen
+				set citizen {_id2} nametag invisible
+				make citizen {_id2} invulnerable
+				give npc {_id2} the look close trait
+				set {bedwars.game.%loop-value%.villagerupgrade.yellow} to {_id2}
+				set {bedwars.game.%loop-value%.villager.yellow} to "false"
+
+every 1 seconds:
+	loop {bedwars.arena::*}:
+		if {bedwars.game.%loop-value%.generator} is "true":
+			if {bedwars.game.%loop-value%.diamondtime} is not set:
+				set {bedwars.game.%loop-value%.diamondtime} to 30
+			if {bedwars.game.%loop-value%.diamondtime.now} is not set:
+				set {bedwars.game.%loop-value%.diamondtime.now} to 30
+			if {bedwars.game.%loop-value%.diamondtier} is not set:
+				set {bedwars.game.%loop-value%.diamondtier} to "I"
+			if {bedwars.game.%loop-value%.diamondtier} is "II":
+				set {bedwars.game.%loop-value%.diamondtime.now} to 20
+			if {bedwars.game.%loop-value%.diamondtier} is "III":
+				set {bedwars.game.%loop-value%.diamondtime.now} to 10
+			remove 1 from {bedwars.game.%loop-value%.diamondtime}
+			if {bedwars.game.%loop-value%.diamondtime} is 0:
+				if {bedwars.arena.%loop-value%.diamonddrop.0} is set:
+					drop 1 diamond at {bedwars.arena.%loop-value%.diamonddrop.0}
+				if {bedwars.arena.%loop-value%.diamonddrop.1} is set:
+					drop 1 diamond at {bedwars.arena.%loop-value%.diamonddrop.1}
+				if {bedwars.arena.%loop-value%.diamonddrop.2} is set:
+					drop 1 diamond at {bedwars.arena.%loop-value%.diamonddrop.2}
+				if {bedwars.arena.%loop-value%.diamonddrop.3} is set:
+					drop 1 diamond at {bedwars.arena.%loop-value%.diamonddrop.3}
+				if {bedwars.arena.%loop-value%.diamonddrop.4} is set:
+					drop 1 diamond at {bedwars.arena.%loop-value%.diamonddrop.4}
+				if {bedwars.arena.%loop-value%.diamonddrop.5} is set:
+					drop 1 diamond at {bedwars.arena.%loop-value%.diamonddrop.5}
+				if {bedwars.arena.%loop-value%.diamonddrop.6} is set:
+					drop 1 diamond at {bedwars.arena.%loop-value%.diamonddrop.6}
+				if {bedwars.arena.%loop-value%.diamonddrop.7} is set:
+					drop 1 diamond at {bedwars.arena.%loop-value%.diamonddrop.7}
+				if {bedwars.arena.%loop-value%.diamonddrop.8} is set:
+					drop 1 diamond at {bedwars.arena.%loop-value%.diamonddrop.8}
+				if {bedwars.arena.%loop-value%.diamonddrop.9} is set:
+					drop 1 diamond at {bedwars.arena.%loop-value%.diamonddrop.9}
+			if {bedwars.arena.%loop-value%.diamonddrop.0.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.diamondtier}%;&b&lDiamond;&eSpawns in &c%{bedwars.game.%loop-value%.diamondtime}% &eseconds;ICON: diamond" at {bedwars.arena.%loop-value%.diamonddrop.0.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.diamonddrop.1.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.diamondtier}%;&b&lDiamond;&eSpawns in &c%{bedwars.game.%loop-value%.diamondtime}% &eseconds;ICON: diamond" at {bedwars.arena.%loop-value%.diamonddrop.1.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.diamonddrop.2.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.diamondtier}%;&b&lDiamond;&eSpawns in &c%{bedwars.game.%loop-value%.diamondtime}% &eseconds;ICON: diamond" at {bedwars.arena.%loop-value%.diamonddrop.2.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.diamonddrop.3.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.diamondtier}%;&b&lDiamond;&eSpawns in &c%{bedwars.game.%loop-value%.diamondtime}% &eseconds;ICON: diamond" at {bedwars.arena.%loop-value%.diamonddrop.3.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.diamonddrop.4.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.diamondtier}%;&b&lDiamond;&eSpawns in &c%{bedwars.game.%loop-value%.diamondtime}% &eseconds;ICON: diamond" at {bedwars.arena.%loop-value%.diamonddrop.4.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.diamonddrop.5.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.diamondtier}%;&b&lDiamond;&eSpawns in &c%{bedwars.game.%loop-value%.diamondtime}% &eseconds;ICON: diamond" at {bedwars.arena.%loop-value%.diamonddrop.5.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.diamonddrop.6.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.diamondtier}%;&b&lDiamond;&eSpawns in &c%{bedwars.game.%loop-value%.diamondtime}% &eseconds;ICON: diamond" at {bedwars.arena.%loop-value%.diamonddrop.6.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.diamonddrop.7.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.diamondtier}%;&b&lDiamond;&eSpawns in &c%{bedwars.game.%loop-value%.diamondtime}% &eseconds;ICON: diamond" at {bedwars.arena.%loop-value%.diamonddrop.7.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.diamonddrop.8.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.diamondtier}%;&b&lDiamond;&eSpawns in &c%{bedwars.game.%loop-value%.diamondtime}% &eseconds;ICON: diamond" at {bedwars.arena.%loop-value%.diamonddrop.8.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.diamonddrop.9.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.diamondtier}%;&b&lDiamond;&eSpawns in &c%{bedwars.game.%loop-value%.diamondtime}% &eseconds;ICON: diamond" at {bedwars.arena.%loop-value%.diamonddrop.9.holo} for 1 seconds
+			if {bedwars.game.%loop-value%.diamondtime} <= 0:
+				set {bedwars.game.%loop-value%.diamondtime} to {bedwars.game.%loop-value%.diamondtime.now}
+			if {bedwars.game.%loop-value%.emeraldtime} is not set:
+				set {bedwars.game.%loop-value%.emeraldtime} to 30
+			if {bedwars.game.%loop-value%.emeraldtime.now} is not set:
+				set {bedwars.game.%loop-value%.emeraldtime.now} to 30
+			if {bedwars.game.%loop-value%.emeraldtier} is not set:
+				set {bedwars.game.%loop-value%.emeraldtier} to "I"
+			if {bedwars.game.%loop-value%.emeraldtier} is "II":
+				set {bedwars.game.%loop-value%.emeraldtime.now} to 20
+			if {bedwars.game.%loop-value%.emeraldtier} is "III":
+				set {bedwars.game.%loop-value%.emeraldtime.now} to 10
+			remove 1 from {bedwars.game.%loop-value%.emeraldtime}
+			if {bedwars.game.%loop-value%.emeraldtime} is 0:
+				if {bedwars.arena.%loop-value%.emeralddrop.0} is set:
+					drop 1 emerald at {bedwars.arena.%loop-value%.emeralddrop.0}
+				if {bedwars.arena.%loop-value%.emeralddrop.1} is set:
+					drop 1 emerald at {bedwars.arena.%loop-value%.emeralddrop.1}
+				if {bedwars.arena.%loop-value%.emeralddrop.2} is set:
+					drop 1 emerald at {bedwars.arena.%loop-value%.emeralddrop.2}
+				if {bedwars.arena.%loop-value%.emeralddrop.3} is set:
+					drop 1 emerald at {bedwars.arena.%loop-value%.emeralddrop.3}
+				if {bedwars.arena.%loop-value%.emeralddrop.4} is set:
+					drop 1 emerald at {bedwars.arena.%loop-value%.emeralddrop.4}
+				if {bedwars.arena.%loop-value%.emeralddrop.5} is set:
+					drop 1 emerald at {bedwars.arena.%loop-value%.emeralddrop.5}
+				if {bedwars.arena.%loop-value%.emeralddrop.6} is set:
+					drop 1 emerald at {bedwars.arena.%loop-value%.emeralddrop.6}
+				if {bedwars.arena.%loop-value%.emeralddrop.7} is set:
+					drop 1 emerald at {bedwars.arena.%loop-value%.emeralddrop.7}
+				if {bedwars.arena.%loop-value%.emeralddrop.8} is set:
+					drop 1 emerald at {bedwars.arena.%loop-value%.emeralddrop.8}
+				if {bedwars.arena.%loop-value%.emeralddrop.9} is set:
+					drop 1 emerald at {bedwars.arena.%loop-value%.emeralddrop.9}
+			if {bedwars.arena.%loop-value%.emeralddrop.0.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.emeraldtier}%;&2&lEmerald;&eSpawns in &c%{bedwars.game.%loop-value%.emeraldtime}% &eseconds;ICON: emerald" at {bedwars.arena.%loop-value%.emeralddrop.0.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.emeralddrop.1.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.emeraldtier}%;&2&lEmerald;&eSpawns in &c%{bedwars.game.%loop-value%.emeraldtime}% &eseconds;ICON: emerald" at {bedwars.arena.%loop-value%.emeralddrop.1.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.emeralddrop.2.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.emeraldtier}%;&2&lEmerald;&eSpawns in &c%{bedwars.game.%loop-value%.emeraldtime}% &eseconds;ICON: emerald" at {bedwars.arena.%loop-value%.emeralddrop.2.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.emeralddrop.3.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.emeraldtier}%;&2&lEmerald;&eSpawns in &c%{bedwars.game.%loop-value%.emeraldtime}% &eseconds;ICON: emerald" at {bedwars.arena.%loop-value%.emeralddrop.3.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.emeralddrop.4.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.emeraldtier}%;&2&lEmerald;&eSpawns in &c%{bedwars.game.%loop-value%.emeraldtime}% &eseconds;ICON: emerald" at {bedwars.arena.%loop-value%.emeralddrop.4.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.emeralddrop.5.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.emeraldtier}%;&2&lEmerald;&eSpawns in &c%{bedwars.game.%loop-value%.emeraldtime}% &eseconds;ICON: emerald" at {bedwars.arena.%loop-value%.emeralddrop.5.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.emeralddrop.6.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.emeraldtier}%;&2&lEmerald;&eSpawns in &c%{bedwars.game.%loop-value%.emeraldtime}% &eseconds;ICON: emerald" at {bedwars.arena.%loop-value%.emeralddrop.6.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.emeralddrop.7.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.emeraldtier}%;&2&lEmerald;&eSpawns in &c%{bedwars.game.%loop-value%.emeraldtime}% &eseconds;ICON: emerald" at {bedwars.arena.%loop-value%.emeralddrop.7.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.emeralddrop.8.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.emeraldtier}%;&2&lEmerald;&eSpawns in &c%{bedwars.game.%loop-value%.emeraldtime}% &eseconds;ICON: emerald" at {bedwars.arena.%loop-value%.emeralddrop.8.holo} for 1 seconds
+			if {bedwars.arena.%loop-value%.emeralddrop.9.holo} is set:
+				create hologram "&eTier &c%{bedwars.game.%loop-value%.emeraldtier}%;&2&lEmerald;&eSpawns in &c%{bedwars.game.%loop-value%.emeraldtime}% &eseconds;ICON: emerald" at {bedwars.arena.%loop-value%.emeralddrop.9.holo} for 1 seconds
+			if {bedwars.game.%loop-value%.emeraldtime} <= 0:
+				set {bedwars.game.%loop-value%.emeraldtime} to {bedwars.game.%loop-value%.emeraldtime.now}
